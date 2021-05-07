@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">Air Quaility Gijón</string>
 
-    <!-- Main -->
+    <!-- menu_main -->
+    <string name="menu_refresh">Refresh data</string>
+    <string name="menu_info">Air quality levels info...</string>
+    <string name="menu_about">About Air Quality Gijón app...</string>
+
+    <!-- activity_main -->
     <string name="station_avenida_constitucion">Avenida Constitución</string>
     <string name="station_avenida_argentina">Avenida Argentina</string>
     <string name="station_montevil">Montevil</string>
