@@ -79,6 +79,16 @@ public class StationActivity extends AppCompatActivity {
 
     //TODO: Implement this method
     private String formatWindDirection(Double degrees){
+        if(degrees >= 360 || degrees < 0) return "";
+
+        if(degrees >= 338 || degrees <= 22) return getString(R.string.north);
+        if(degrees >= 23 && degrees <= 67) return getString(R.string.north_east);
+        if(degrees >= 68 && degrees <= 112) return getString(R.string.east);
+        if(degrees >= 113 && degrees <= 157) return getString(R.string.south_east);
+        if(degrees >= 158 && degrees <= 202) return getString(R.string.south);
+        if(degrees >= 203 && degrees <= 247) return getString(R.string.south_west);
+        if(degrees >= 248 && degrees <= 292) return getString(R.string.west);
+        if(degrees >= 293 && degrees <= 337) return getString(R.string.north_west);
         return "";
     }
 }
