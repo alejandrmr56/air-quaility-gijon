@@ -3,7 +3,9 @@ package com.alejandromartinezremis.airquailitygijon.logic;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class AirStation {
+import java.io.Serializable;
+
+public class AirStation implements Serializable {
     private Integer estacion;
     private String titulo, fecha, periodo, co, pm10, pm25;
     private Double latitud, longitud, so2, no, no2, o3, dd, vv, tmp, hr, prb, rs, ll, ben, tol, mxil;

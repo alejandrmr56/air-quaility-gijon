@@ -39,36 +39,38 @@ public class MainActivity extends AppCompatActivity {
         getAirStationsData();
     }
 
-    private void getAirStationsData(){
-        new Communicator().execute("https://opendata.gijon.es/descargar.php?id=1&tipo=JSON");
-    }
-
     public void onImageClick(View w){
         Intent intent = new Intent(this, StationActivity.class);
         switch (w.getId()){
             case R.id.imageViewPictureAvdaConstitucion:
                 intent.putExtra("stationName", getString(R.string.station_avenida_constitucion));
                 intent.putExtra("stationPictureId", R.drawable.ic_station_avda_constitucion);
+                intent.putExtra("station", getAirStationById(1));
                 break;
             case R.id.imageViewPictureAvdaArgentina:
                 intent.putExtra("stationName", getString(R.string.station_avenida_argentina));
                 intent.putExtra("stationPictureId", R.drawable.ic_station_avda_argentina);
+                intent.putExtra("station", getAirStationById(2));
                 break;
             case R.id.imageViewPictureMontevil:
                 intent.putExtra("stationName", getString(R.string.station_montevil));
                 intent.putExtra("stationPictureId", R.drawable.ic_station_montevil);
+                intent.putExtra("station", getAirStationById(10));
                 break;
             case R.id.imageViewPictureHermanosFelgueroso:
                 intent.putExtra("stationName", getString(R.string.station_hermanos_felgueroso));
                 intent.putExtra("stationPictureId", R.drawable.ic_station_hermanos_felgueroso);
+                intent.putExtra("station", getAirStationById(3));
                 break;
             case R.id.imageViewPictureAvdaCastilla:
                 intent.putExtra("stationName", getString(R.string.station_avenida_castilla));
                 intent.putExtra("stationPictureId", R.drawable.ic_station_avda_castilla);
+                intent.putExtra("station", getAirStationById(4));
                 break;
             case R.id.imageViewPictureSantaBarbara:
                 intent.putExtra("stationName", getString(R.string.station_santa_barbara));
                 intent.putExtra("stationPictureId", R.drawable.ic_station_santa_barbara);
+                intent.putExtra("station", getAirStationById(11));
                 break;
         }
         startActivity(intent);
@@ -119,6 +121,17 @@ public class MainActivity extends AppCompatActivity {
                 .create().show();
     }
     /* End of menu-related code */
+
+    private AirStation getAirStationById(int airStationId){
+        for(AirStation airStation : airStations)
+            if(airStationId == airStation.getEstacion())
+                return airStation;
+        return null;
+    }
+
+    private void getAirStationsData() {
+        new Communicator().execute("https://opendata.gijon.es/descargar.php?id=1&tipo=JSON");
+    }
 
     private class Communicator extends AsyncTask<String, Void, String>{
 
