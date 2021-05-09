@@ -17,6 +17,8 @@ public class StationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_station);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
 
         ((TextView)findViewById(R.id.textViewStationName)).setText("[Station name]"); //TODO: Remove this
         ((TextView)findViewById(R.id.textViewAirQualityDescription)).setText("[Air quality description]"); //TODO: Remove this

@@ -28,6 +28,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="onImageClick"
                     app:srcCompat="@drawable/ic_station_avda_constitucion" />
 
                 <ImageView
@@ -35,6 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="onImageClick"
                     app:srcCompat="@drawable/ic_station_avda_argentina" />
             </LinearLayout>
 
@@ -106,6 +108,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="onImageClick"
                     app:srcCompat="@drawable/ic_station_montevil" />
 
                 <ImageView
@@ -113,6 +116,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="onImageClick"
                     app:srcCompat="@drawable/ic_station_hermanos_felgueroso" />
             </LinearLayout>
 
@@ -183,6 +187,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="onImageClick"
                     app:srcCompat="@drawable/ic_station_avda_castilla" />
 
                 <ImageView
@@ -190,6 +195,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="onImageClick"
                     app:srcCompat="@drawable/ic_station_santa_barbara" />
             </LinearLayout>
 
