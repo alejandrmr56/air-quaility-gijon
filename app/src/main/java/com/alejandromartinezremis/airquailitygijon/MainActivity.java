@@ -21,6 +21,32 @@ public class MainActivity extends AppCompatActivity {
 
     public void onImageClick(View w){
         Intent intent = new Intent(this, StationActivity.class);
+        switch (w.getId()){
+            case R.id.imageViewPictureAvdaConstitucion:
+                intent.putExtra("stationName", getString(R.string.station_avenida_constitucion));
+                intent.putExtra("stationPictureId", R.drawable.ic_station_avda_constitucion);
+                break;
+            case R.id.imageViewPictureAvdaArgentina:
+                intent.putExtra("stationName", getString(R.string.station_avenida_argentina));
+                intent.putExtra("stationPictureId", R.drawable.ic_station_avda_argentina);
+                break;
+            case R.id.imageViewPictureMontevil:
+                intent.putExtra("stationName", getString(R.string.station_montevil));
+                intent.putExtra("stationPictureId", R.drawable.ic_station_montevil);
+                break;
+            case R.id.imageViewPictureHermanosFelgueroso:
+                intent.putExtra("stationName", getString(R.string.station_hermanos_felgueroso));
+                intent.putExtra("stationPictureId", R.drawable.ic_station_hermanos_felgueroso);
+                break;
+            case R.id.imageViewPictureAvdaCastilla:
+                intent.putExtra("stationName", getString(R.string.station_avenida_castilla));
+                intent.putExtra("stationPictureId", R.drawable.ic_station_avda_castilla);
+                break;
+            case R.id.imageViewPictureSantaBarbara:
+                intent.putExtra("stationName", getString(R.string.station_santa_barbara));
+                intent.putExtra("stationPictureId", R.drawable.ic_station_santa_barbara);
+                break;
+        }
         startActivity(intent);
     }
 
