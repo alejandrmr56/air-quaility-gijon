@@ -77,7 +77,6 @@ public class StationActivity extends AppCompatActivity {
         //TODO: Add onClick listener to location (Google Maps)
     }
 
-    //TODO: Implement this method
     private String formatWindDirection(Double degrees){
         if(degrees >= 360 || degrees < 0) return "";
 
