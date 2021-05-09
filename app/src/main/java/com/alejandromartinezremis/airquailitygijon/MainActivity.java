@@ -6,17 +6,41 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.alejandromartinezremis.airquailitygijon.logic.AirStation;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+    private List<AirStation> airStations = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getAirStationsData();
+    }
+
+    private void getAirStationsData(){
+        new Communicator().execute("https://opendata.gijon.es/descargar.php?id=1&tipo=JSON");
     }
 
     public void onImageClick(View w){
@@ -95,4 +119,39 @@ public class MainActivity extends AppCompatActivity {
                 .create().show();
     }
     /* End of menu-related code */
+
+    private class Communicator extends AsyncTask<String, Void, String>{
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String str = "";
+            try {
+                URLConnection connection = new URL(strings[0]).openConnection();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String line;
+                while((line = bufferedReader.readLine()) != null)
+                    str += line;
+            } catch (IOException e) {
+                e.printStackTrace(); //TODO: Handle exception
+            }
+            return str;
+        }
+
+        @Override
+        protected void onPostExecute(String str) {
+            try {
+                JSONObject jsonObject = new JSONObject(str);
+                JSONArray jsonArray = jsonObject.getJSONObject("calidadairemediatemporales").getJSONArray("calidadairemediatemporal");
+                int counter = 0;
+                for(int i=0; i<jsonArray.length(); i++){
+                    if(counter != 0 && airStations.get(counter-1).getEstacion() == jsonArray.getJSONObject(i).getInt("estacion"))//Just add the latest record of each station.
+                        continue;
+                    airStations.add(new AirStation(jsonArray.getJSONObject(i)));
+                    counter++;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace(); //TODO: Handle exception
+            }
+        }
+    }
 }
