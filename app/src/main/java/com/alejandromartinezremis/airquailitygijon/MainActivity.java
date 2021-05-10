@@ -45,32 +45,32 @@ public class MainActivity extends AppCompatActivity {
             case R.id.imageViewPictureAvdaConstitucion:
                 intent.putExtra("stationName", getString(R.string.station_avenida_constitucion));
                 intent.putExtra("stationPictureId", R.drawable.ic_station_avda_constitucion);
-                intent.putExtra("station", getAirStationById(1));
+                intent.putExtra("station", getAirStationById(1)); //TODO: Risk of NPE after getAirStationByID returns null
                 break;
             case R.id.imageViewPictureAvdaArgentina:
                 intent.putExtra("stationName", getString(R.string.station_avenida_argentina));
                 intent.putExtra("stationPictureId", R.drawable.ic_station_avda_argentina);
-                intent.putExtra("station", getAirStationById(2));
+                intent.putExtra("station", getAirStationById(2)); //TODO: Risk of NPE after getAirStationByID returns null
                 break;
             case R.id.imageViewPictureMontevil:
                 intent.putExtra("stationName", getString(R.string.station_montevil));
                 intent.putExtra("stationPictureId", R.drawable.ic_station_montevil);
-                intent.putExtra("station", getAirStationById(10));
+                intent.putExtra("station", getAirStationById(10)); //TODO: Risk of NPE after getAirStationByID returns null
                 break;
             case R.id.imageViewPictureHermanosFelgueroso:
                 intent.putExtra("stationName", getString(R.string.station_hermanos_felgueroso));
                 intent.putExtra("stationPictureId", R.drawable.ic_station_hermanos_felgueroso);
-                intent.putExtra("station", getAirStationById(3));
+                intent.putExtra("station", getAirStationById(3)); //TODO: Risk of NPE after getAirStationByID returns null
                 break;
             case R.id.imageViewPictureAvdaCastilla:
                 intent.putExtra("stationName", getString(R.string.station_avenida_castilla));
                 intent.putExtra("stationPictureId", R.drawable.ic_station_avda_castilla);
-                intent.putExtra("station", getAirStationById(4));
+                intent.putExtra("station", getAirStationById(4)); //TODO: Risk of NPE after getAirStationByID returns null
                 break;
             case R.id.imageViewPictureSantaBarbara:
                 intent.putExtra("stationName", getString(R.string.station_santa_barbara));
                 intent.putExtra("stationPictureId", R.drawable.ic_station_santa_barbara);
-                intent.putExtra("station", getAirStationById(11));
+                intent.putExtra("station", getAirStationById(11)); //TODO: Risk of NPE after getAirStationByID returns null
                 break;
         }
         startActivity(intent);
@@ -129,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
 
+    //TODO: Check exception if no Internet connection or list is empty or similar.
     private void getAirStationsData() {
         new Communicator().execute("https://opendata.gijon.es/descargar.php?id=1&tipo=JSON");
     }
