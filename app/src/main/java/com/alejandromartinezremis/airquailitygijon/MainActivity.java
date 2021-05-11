@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.alejandromartinezremis.airquailitygijon.logic.AirStation;
 
@@ -166,7 +167,38 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace(); //TODO: Handle exception
             }
 
+            displayAirQualityCircles();
             removeLoadingView();
+        }
+
+        private void displayAirQualityCircles(){
+            for(AirStation airStation : airStations){
+                int viewId;
+                switch(airStation.getEstacion()){
+                    case 1:
+                        viewId = R.id.imageViewCircleAvdaConstitucion;
+                        break;
+                    case 2:
+                        viewId = R.id.imageViewCircleAvdaArgentina;
+                        break;
+                    case 10:
+                        viewId = R.id.imageViewCircleMontevil;
+                        break;
+                    case 3:
+                        viewId = R.id.imageViewCircleHermanosFelgueroso;
+                        break;
+                    case 4:
+                        viewId = R.id.imageViewCircleAvdaCastilla;
+                        break;
+                    case 11:
+                        viewId = R.id.imageViewCircleSantaBarbara;
+                        break;
+                    default:
+                        viewId = -1;
+                }
+                if(viewId == -1) continue;
+                ((ImageView)findViewById(viewId)).setImageResource(Utils.getDrawableIdForQualityCircle(airStation.getAirQuality()));
+            }
         }
 
         private void removeLoadingView(){
