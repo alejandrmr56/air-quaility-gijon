@@ -25,6 +25,7 @@
     <string name="station_hermanos_felgueroso">Hermanos Felgueroso</string>
     <string name="station_avenida_castilla">Avenida Castilla</string>
     <string name="station_santa_barbara">Santa Bárbara</string>
+    <string name="station_unknown">Unknown Station</string>
 
     <!-- activity_station -->
     <string name="station">Station</string>

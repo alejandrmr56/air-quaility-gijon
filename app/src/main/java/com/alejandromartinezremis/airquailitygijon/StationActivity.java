@@ -31,10 +31,9 @@ public class StationActivity extends AppCompatActivity {
     }
 
     private void loadData(){
-        ((TextView)findViewById(R.id.textViewStationName)).setText(this.getIntent().getStringExtra("stationName"));
-        ((ImageView)findViewById(R.id.imageViewPicture)).setImageResource(this.getIntent().getIntExtra("stationPictureId", -1));
         airStation = (AirStation)this.getIntent().getSerializableExtra("station");
-
+        ((TextView)findViewById(R.id.textViewStationName)).setText(getString(Utils.getStringIdForStationName(airStation.getEstacion())));
+        ((ImageView)findViewById(R.id.imageViewPicture)).setImageResource(Utils.getDrawableIdForStationPicture(airStation.getEstacion()));
         ((ImageView)findViewById(R.id.imageViewCircle)).setImageResource(Utils.getDrawableIdForQualityCircle(airStation.getAirQuality()));
 
         final List<ListViewItem> listViewItems = new ArrayList<>();

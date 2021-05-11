@@ -12,6 +12,7 @@ public class AirStation implements Serializable {
     private Double latitud, longitud, so2, no, no2, o3, dd, vv, tmp, hr, prb, rs, ll, ben, tol, mxil;
 
     public AirStation(JSONObject jsonObject) {
+        if (jsonObject == null) return;
         try {
             this.estacion = jsonObject.getInt("estacion");
             this.titulo = jsonObject.getString("título");
