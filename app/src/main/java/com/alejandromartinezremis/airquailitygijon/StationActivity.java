@@ -59,7 +59,8 @@ public class StationActivity extends AppCompatActivity {
 
         //Loads the list with the components of the air station
         final List<ListViewItem> listViewItems = new ArrayList<>();
-        listViewItems.add(new ListViewItem(getString(R.string.date), airStation.getFecha())); //TODO: Include time (periodo(?), UTC)
+        String dateAndTime = airStation.getFecha() +"T" +airStation.getPeriodo() +":00";
+        listViewItems.add(new ListViewItem(getString(R.string.date), Utils.formatDate(dateAndTime)));
         listViewItems.add(new ListViewItem(getString(R.string.location), getString(R.string.location_message)));
         if(!Double.isNaN(airStation.getTmp()))
             listViewItems.add(new ListViewItem(getString(R.string.tmp), airStation.getTmp().toString() +" " +getString(R.string.temperature_unit)));
