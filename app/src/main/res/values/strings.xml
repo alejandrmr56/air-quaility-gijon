@@ -21,6 +21,7 @@
     <string name="menu_about_alert_dialog_message">App designed and implemented by Alejandro Martínez Remis.\n\nData provided by the City Council of Gijón (Asturias, Spain).</string>
 
     <!-- activity_main -->
+    <string name="loading">Retrieving latest hour data...</string>
     <string name="station_avenida_constitucion">Avenida Constitución</string>
     <string name="station_avenida_argentina">Avenida Argentina</string>
     <string name="station_montevil">Montevil</string>

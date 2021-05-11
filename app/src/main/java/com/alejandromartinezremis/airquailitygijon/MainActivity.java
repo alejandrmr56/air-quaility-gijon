@@ -166,6 +166,13 @@ public class MainActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace(); //TODO: Handle exception
             }
+
+            removeLoadingView();
+        }
+
+        private void removeLoadingView(){
+            findViewById(R.id.loadingLayout).setVisibility(View.GONE);
+            findViewById(R.id.mainLayout).setVisibility(View.VISIBLE);
         }
     }
 }
