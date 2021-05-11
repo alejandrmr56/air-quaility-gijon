@@ -4,11 +4,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -88,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_refresh:
-                updateData();
+                refreshData();
                 break;
             case R.id.menu_info:
                 displayInfoAlertDialog(this);
@@ -101,8 +99,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void updateData(){
-        throw new UnsupportedOperationException("Not implemented yet"); //TODO: Implement this
+    private void refreshData(){
+        setContentView(R.layout.activity_main);
+        getAirStationsData();
     }
 
     private void displayInfoAlertDialog(Context context) {
