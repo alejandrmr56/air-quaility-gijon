@@ -52,6 +52,7 @@
     <string name="pm25">Suspended particles smaller than 2,5 µm</string>
     <string name="voc_separator">Volatile organic compounds (from fuel burning)</string>
     <string name="text_before_time">at</string>
+
     <string name="unit_micro">μg/m³</string>
     <string name="unit_milli">mg/m³</string>
     <string name="temperature_unit">ºC</string>
@@ -61,7 +62,15 @@
     <string name="wind_speed_unit">km/h</string>
     <string name="solar_radiation_unit">W/m²</string>
     <string name="precipitation_unit">l/m²</string>
+
     <string name="no_data">No Data</string>
+
+    <string name="air_quality">Air quality</string>
+    <string name="air_quality_very_good">Very Good</string>
+    <string name="air_quality_good">Good</string>
+    <string name="air_quality_bad">Bad</string>
+    <string name="air_quality_very_bad">Very Bad</string>
+    <string name="air_quality_unknown">Unknown</string>
 
     <string name="location">Location</string>
     <string name="location_message">Press here to see it in Google Maps</string>

@@ -25,17 +25,39 @@ public class StationActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
 
         loadData();
-
-
-        ((TextView)findViewById(R.id.textViewAirQualityDescription)).setText("[Air quality description]"); //TODO: Remove this
     }
 
     private void loadData(){
         airStation = (AirStation)this.getIntent().getSerializableExtra("station");
+        //Load station name
         ((TextView)findViewById(R.id.textViewStationName)).setText(getString(Utils.getStringIdForStationName(airStation.getEstacion())));
+        //Load station picture
         ((ImageView)findViewById(R.id.imageViewPicture)).setImageResource(Utils.getDrawableIdForStationPicture(airStation.getEstacion()));
+        //Load air quality circle
         ((ImageView)findViewById(R.id.imageViewCircle)).setImageResource(Utils.getDrawableIdForQualityCircle(airStation.getAirQuality()));
 
+        //Loads air quality description. Only displays known component qualities.
+        String str = getString(R.string.air_quality)+": " +formatQuality(airStation.getAirQuality()) +"\n";
+        AirStation.Quality[] qualities = new AirStation.Quality[5];
+        qualities[0] = airStation.getPm10Quality();
+        qualities[1] = airStation.getSo2Quality();
+        qualities[2] = airStation.getNo2Quality();
+        qualities[3] = airStation.getCoQuality();
+        qualities[4] = airStation.getO3Quality();
+        String[] componentNames = new String[5];
+        componentNames[0] = getString(R.string.pm10);
+        componentNames[1] = getString(R.string.so2);
+        componentNames[2] = getString(R.string.no2);
+        componentNames[3] = getString(R.string.co);
+        componentNames[4] = getString(R.string.o3);
+
+        for(int i = 0; i < qualities.length; i++)
+            if(!qualities[i].equals(AirStation.Quality.UNKNOWN))
+                str += "\n" +componentNames[i] +": " +formatQuality(qualities[i]);
+
+        ((TextView) findViewById(R.id.textViewAirQualityDescription)).setText(str);
+
+        //Loads the list with the components of the air station
         final List<ListViewItem> listViewItems = new ArrayList<>();
         listViewItems.add(new ListViewItem(getString(R.string.date), airStation.getFecha())); //TODO: Include time (periodo(?), UTC)
         listViewItems.add(new ListViewItem(getString(R.string.location), getString(R.string.location_message)));
@@ -76,6 +98,21 @@ public class StationActivity extends AppCompatActivity {
 
         ((ListView)findViewById(R.id.listView)).setAdapter(new StationAdapter(listViewItems, this));
         //TODO: Add onClick listener to location (Google Maps)
+    }
+
+    private String formatQuality(AirStation.Quality quality){
+        switch (quality){
+            case VERY_GOOD:
+                return getString(R.string.air_quality_very_good);
+            case GOOD:
+                return getString(R.string.air_quality_good);
+            case BAD:
+                return getString(R.string.air_quality_bad);
+            case VERY_BAD:
+                return getString(R.string.air_quality_very_bad);
+            default:
+                return getString(R.string.air_quality_unknown);
+        }
     }
 
     private String formatWindDirection(Double degrees){
