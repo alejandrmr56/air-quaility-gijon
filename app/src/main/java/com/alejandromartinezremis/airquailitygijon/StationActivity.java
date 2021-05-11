@@ -35,6 +35,8 @@ public class StationActivity extends AppCompatActivity {
         ((ImageView)findViewById(R.id.imageViewPicture)).setImageResource(this.getIntent().getIntExtra("stationPictureId", -1));
         airStation = (AirStation)this.getIntent().getSerializableExtra("station");
 
+        ((ImageView)findViewById(R.id.imageViewCircle)).setImageResource(Utils.getDrawableIdForQualityCircle(airStation.getAirQuality()));
+
         final List<ListViewItem> listViewItems = new ArrayList<>();
         listViewItems.add(new ListViewItem(getString(R.string.date), airStation.getFecha())); //TODO: Include time (periodo(?), UTC)
         listViewItems.add(new ListViewItem(getString(R.string.location), getString(R.string.location_message)));
