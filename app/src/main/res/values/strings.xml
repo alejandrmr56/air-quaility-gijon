@@ -9,10 +9,7 @@
     <string name="menu_about">About \'Air Quality Gijón\' app...</string>
     <string name="menu_info_alert_dialog_title">Air quality levels info</string>
     <string name="menu_info_alert_dialog_message">
-        - Dark Green Circle: Very Good\n
-        - Light Green Circle: Good\n
-        - Yellow Circle: Bad\n
-        - Red Circle: Very Bad\n
+        - Dark Green Circle: Very Good\n- Light Green Circle: Good\n- Yellow Circle: Bad\n- Red Circle: Very Bad\n
         \nThe total air quality level is the same one that the worst level of a single compound.
         That means that if, for example, every compound has a \'very good\' level but one has a \'very bad\' one the total air quality is \'very bad\'.\n
         \nIf the level of a given compound is \'bad\' that means that, according to the data provided by the city council, it is over the safe limits for health.
