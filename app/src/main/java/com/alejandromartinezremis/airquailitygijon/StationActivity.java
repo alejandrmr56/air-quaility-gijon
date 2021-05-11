@@ -2,7 +2,11 @@ package com.alejandromartinezremis.airquailitygijon;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -97,8 +101,23 @@ public class StationActivity extends AppCompatActivity {
         if(!Double.isNaN(airStation.getMxil()))
             listViewItems.add(new ListViewItem(getString(R.string.mxil), airStation.getMxil().toString() +" " +getString(R.string.unit_micro)));
 
-        ((ListView)findViewById(R.id.listView)).setAdapter(new StationAdapter(listViewItems, this));
-        //TODO: Add onClick listener to location (Google Maps)
+        ListView listView = (ListView) findViewById(R.id.listView);
+        listView.setAdapter(new StationAdapter(listViewItems, this));
+
+        //
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, final int position, final long id) {
+                ListViewItem property = (ListViewItem) listView.getItemAtPosition(position);
+
+                if(property.getId().equals(getString(R.string.location))){
+                    String str = "geo:" +airStation.getLatitud() +", " +airStation.getLongitud()
+                            +"?q=" +airStation.getLatitud() +", " +airStation.getLongitud() +"(" +airStation.getTitulo() +")";
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(str));
+                    view.getContext().startActivity(intent);
+                }
+            }
+        });
     }
 
     private String formatQuality(AirStation.Quality quality){
