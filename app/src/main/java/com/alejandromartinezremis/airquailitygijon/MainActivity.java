@@ -127,14 +127,23 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
             String str = "";
+            BufferedReader bufferedReader = null;
             try {
                 URLConnection connection = new URL(strings[0]).openConnection();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 String line;
                 while((line = bufferedReader.readLine()) != null)
                     str += line;
             } catch (IOException e) {
                 e.printStackTrace(); //TODO: Handle exception
+            }finally {
+                if(bufferedReader != null) {
+                    try {
+                        bufferedReader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
             return str;
         }
