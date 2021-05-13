@@ -2,17 +2,24 @@ package com.alejandromartinezremis.airquailitygijon;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.alejandromartinezremis.airquailitygijon.logic.AirStation;
+import com.alejandromartinezremis.airquailitygijon.service.NotificationService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -83,6 +90,18 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_about:
                 displayAboutAlertDialog(this);
                 break;
+            case R.id.testNotification:
+                Intent startServiceIntent = new Intent(this, NotificationService.class);
+                startService(startServiceIntent);
+//                NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "CHANNEL_ID")
+//                        .setSmallIcon(R.drawable.ic_circle_bad)
+//                        .setContentTitle("textTitle")
+//                        .setContentText("textContent")
+//                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+//                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+//                // notificationId is a unique int for each notification that you must define
+//                notificationManager.notify(0, builder.build());
+                break;
         }
         return true;
     }
@@ -116,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 return airStation;
         return null;
     }
+
 
     //TODO: Check exception if no Internet connection or list is empty or similar.
     private void getAirStationsData() {

@@ -9,5 +9,8 @@
         android:title="@string/menu_info" />
     <item
         android:id="@+id/menu_about"
-        android:title="@string/menu_about" />
+        android:title="@string/menu_about" ></item>
+    <item
+        android:id="@+id/testNotification"
+        android:title="[TEST] ServiceNotification" />
 </menu>
