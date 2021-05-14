@@ -145,10 +145,10 @@ public class MainActivity extends AppCompatActivity {
         new Communicator().execute("https://opendata.gijon.es/descargar.php?id=1&tipo=JSON");
     }
 
-    private class Communicator extends AsyncTask<String, Void, String>{
+    private class Communicator extends AsyncTask<String, Void, Void>{
 
         @Override
-        protected String doInBackground(String... strings) {
+        protected Void doInBackground(String... strings) {
             String str = "";
             BufferedReader bufferedReader = null;
             try {
@@ -157,7 +157,17 @@ public class MainActivity extends AppCompatActivity {
                 String line;
                 while((line = bufferedReader.readLine()) != null)
                     str += line;
-            } catch (IOException e) {
+
+                JSONObject jsonObject = new JSONObject(str);
+                JSONArray jsonArray = jsonObject.getJSONObject("calidadairemediatemporales").getJSONArray("calidadairemediatemporal");
+                int counter = 0;
+                for(int i=0; i<jsonArray.length(); i++){
+                    if(counter != 0 && airStations.get(counter-1).getEstacion() == jsonArray.getJSONObject(i).getInt("estacion"))//Just add the latest record of each station.
+                        continue;
+                    airStations.add(new AirStation(jsonArray.getJSONObject(i)));
+                    counter++;
+                }
+            } catch (IOException | JSONException e) {
                 e.printStackTrace(); //TODO: Handle exception
             }finally {
                 if(bufferedReader != null) {
@@ -168,25 +178,11 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             }
-            return str;
+            return null;
         }
 
         @Override
-        protected void onPostExecute(String str) {
-            try {
-                JSONObject jsonObject = new JSONObject(str);
-                JSONArray jsonArray = jsonObject.getJSONObject("calidadairemediatemporales").getJSONArray("calidadairemediatemporal");
-                int counter = 0;
-                for(int i=0; i<jsonArray.length(); i++){
-                    if(counter != 0 && airStations.get(counter-1).getEstacion() == jsonArray.getJSONObject(i).getInt("estacion"))//Just add the latest record of each station.
-                        continue;
-                    airStations.add(new AirStation(jsonArray.getJSONObject(i)));
-                    counter++;
-                }
-            } catch (JSONException e) {
-                e.printStackTrace(); //TODO: Handle exception
-            }
-
+        protected void onPostExecute(Void result) {
             displayAirQualityCircles();
             removeLoadingView();
         }
