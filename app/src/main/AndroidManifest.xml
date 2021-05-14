@@ -3,7 +3,7 @@
     package="com.alejandromartinezremis.airquailitygijon">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -12,22 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AirQuailityGijon">
-        <activity android:name=".StationActivity" android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".StationActivity" android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <receiver android:process=":remote" android:name=".service.NotificationServiceAlarm"></receiver>
-        <service android:name=".service.NotificationService"/>
-        <receiver android:name=".service.NotificationServiceBootBroadcast">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
-            </intent-filter>
-        </receiver>
+        <service android:name=".service.NotificationJobService" android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 
 </manifest>

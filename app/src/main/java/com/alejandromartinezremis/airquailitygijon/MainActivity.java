@@ -2,15 +2,13 @@ package com.alejandromartinezremis.airquailitygijon;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -19,7 +17,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.alejandromartinezremis.airquailitygijon.logic.AirStation;
-import com.alejandromartinezremis.airquailitygijon.service.NotificationService;
+import com.alejandromartinezremis.airquailitygijon.service.NotificationJobService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String LOG_TAG = "MainActivity";
 
     private List<AirStation> airStations = new ArrayList<>();
 
@@ -91,16 +90,20 @@ public class MainActivity extends AppCompatActivity {
                 displayAboutAlertDialog(this);
                 break;
             case R.id.testNotification:
-                Intent startServiceIntent = new Intent(this, NotificationService.class);
-                startService(startServiceIntent);
-//                NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "CHANNEL_ID")
-//                        .setSmallIcon(R.drawable.ic_circle_bad)
-//                        .setContentTitle("textTitle")
-//                        .setContentText("textContent")
-//                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-//                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-//                // notificationId is a unique int for each notification that you must define
-//                notificationManager.notify(0, builder.build());
+                ComponentName componentName = new ComponentName(this, NotificationJobService.class);
+                JobInfo info = new JobInfo.Builder(123, componentName)
+                        .setPersisted(true)
+                        .setMinimumLatency(5 *1000) //60 mins
+                        .setOverrideDeadline(10 *1000) // 70 mins
+                        //.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
+                        .build();
+                JobScheduler scheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
+                int resultCode = scheduler.schedule(info);
+                if (resultCode == JobScheduler.RESULT_SUCCESS) {
+                    Log.d(LOG_TAG, "Job scheduled");
+                } else {
+                    Log.d(LOG_TAG, "Job scheduling failed");
+                }
                 break;
         }
         return true;
