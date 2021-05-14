@@ -1,5 +1,14 @@
 package com.alejandromartinezremis.airquailitygijon;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.os.Build;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+
 import com.alejandromartinezremis.airquailitygijon.logic.AirStation.Quality;
 
 import java.util.Calendar;
@@ -92,5 +101,35 @@ public final class Utils {
         }finally {
             TimeZone.setDefault(userTimeZone);
         }
+    }
+
+    public static void createNotificationChannel(Context context) {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "[Channel Name]";//getString(R.string.channel_name); //TODO: Use R
+            String description = "[Channel Description";// getString(R.string.channel_description); //TODO: Use R
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("CHANNEL_ID", name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    public static Notification createNotification(Context context, String title, String description){
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "CHANNEL_ID")
+                .setSmallIcon(R.drawable.ic_circle_bad)
+                .setContentTitle(title)
+                .setContentText(description)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        return builder.build();
+    }
+
+    public static void createAndSendNotification(Context context, String title, String description){
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+        notificationManager.notify(0, createNotification(context, title, description));
     }
 }
