@@ -4,6 +4,11 @@ import android.app.job.JobParameters;
 import android.app.job.JobService;
 import android.util.Log;
 
+import com.alejandromartinezremis.airquailitygijon.Utils;
+import com.alejandromartinezremis.airquailitygijon.logic.AirStation;
+
+import java.util.List;
+
 public class NotificationJobService extends JobService {
     private static final String LOG_TAG = "NotificationJobService";
     private boolean isJobStopped = false;
@@ -15,17 +20,16 @@ public class NotificationJobService extends JobService {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                for (int i = 0; i < 10; i++) {
-                    Log.d(LOG_TAG, "run: " + i);
-                    if (isJobStopped) {
-                        return;
-                    }
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                List<AirStation> airStations = Utils.getAirStations();
+                String notificationDescription = "";
+                for(AirStation airStation : airStations){//TODO: Change this block of functionality based on user settings.
+                    notificationDescription += getString(Utils.getStringIdForStationName(airStation.getEstacion()));
+                    notificationDescription += ": " +Utils.formatQuality(getApplicationContext(), airStation.getAirQuality()) +"\n";
+                    Log.d(LOG_TAG, notificationDescription);
                 }
+
+                Utils.createAndSendNotification(getApplicationContext(), "Test title", notificationDescription); //TODO: Change title and move to R
+
                 Log.d(LOG_TAG, "Job finished");
                 jobFinished(params, true);
             }

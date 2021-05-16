@@ -41,7 +41,7 @@ public class StationActivity extends AppCompatActivity {
         ((ImageView)findViewById(R.id.imageViewCircle)).setImageResource(Utils.getDrawableIdForQualityCircle(airStation.getAirQuality()));
 
         //Loads air quality description. Only displays known component qualities.
-        String str = getString(R.string.air_quality)+": " +formatQuality(airStation.getAirQuality()) +"\n";
+        String str = getString(R.string.air_quality)+": " +Utils.formatQuality(this, airStation.getAirQuality()) +"\n";
         AirStation.Quality[] qualities = new AirStation.Quality[5];
         qualities[0] = airStation.getPm10Quality();
         qualities[1] = airStation.getSo2Quality();
@@ -57,7 +57,7 @@ public class StationActivity extends AppCompatActivity {
 
         for(int i = 0; i < qualities.length; i++)
             if(!qualities[i].equals(AirStation.Quality.UNKNOWN))
-                str += "\n" +componentNames[i] +": " +formatQuality(qualities[i]);
+                str += "\n" +componentNames[i] +": " +Utils.formatQuality(this, qualities[i]);
 
         ((TextView) findViewById(R.id.textViewAirQualityDescription)).setText(str);
 
@@ -118,21 +118,6 @@ public class StationActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    private String formatQuality(AirStation.Quality quality){
-        switch (quality){
-            case VERY_GOOD:
-                return getString(R.string.air_quality_very_good);
-            case GOOD:
-                return getString(R.string.air_quality_good);
-            case BAD:
-                return getString(R.string.air_quality_bad);
-            case VERY_BAD:
-                return getString(R.string.air_quality_very_bad);
-            default:
-                return getString(R.string.air_quality_unknown);
-        }
     }
 
     private String formatWindDirection(Double degrees){

@@ -1,8 +1,5 @@
 package com.alejandromartinezremis.airquailitygijon;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
@@ -16,18 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.alejandromartinezremis.airquailitygijon.logic.AirStation;
 import com.alejandromartinezremis.airquailitygijon.service.NotificationJobService;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,9 +84,9 @@ public class MainActivity extends AppCompatActivity {
                 ComponentName componentName = new ComponentName(this, NotificationJobService.class);
                 JobInfo info = new JobInfo.Builder(123, componentName)
                         .setPersisted(true)
-                        .setMinimumLatency(5 *1000) //60 mins
-                        .setOverrideDeadline(10 *1000) // 70 mins
-                        //.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
+                        .setMinimumLatency(5 *1000) //TODO: Change to 60 mins
+                        .setOverrideDeadline(10 *1000) //TODO: Change to 70 mins
+                        .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
                         .build();
                 JobScheduler scheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
                 int resultCode = scheduler.schedule(info);
@@ -142,42 +133,14 @@ public class MainActivity extends AppCompatActivity {
 
     //TODO: Check exception if no Internet connection or list is empty or similar.
     private void getAirStationsData() {
-        new Communicator().execute("https://opendata.gijon.es/descargar.php?id=1&tipo=JSON");
+        new Communicator().execute();
     }
 
-    private class Communicator extends AsyncTask<String, Void, Void>{
+    private class Communicator extends AsyncTask<Void, Void, Void>{
 
         @Override
-        protected Void doInBackground(String... strings) {
-            String str = "";
-            BufferedReader bufferedReader = null;
-            try {
-                URLConnection connection = new URL(strings[0]).openConnection();
-                bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                String line;
-                while((line = bufferedReader.readLine()) != null)
-                    str += line;
-
-                JSONObject jsonObject = new JSONObject(str);
-                JSONArray jsonArray = jsonObject.getJSONObject("calidadairemediatemporales").getJSONArray("calidadairemediatemporal");
-                int counter = 0;
-                for(int i=0; i<jsonArray.length(); i++){
-                    if(counter != 0 && airStations.get(counter-1).getEstacion() == jsonArray.getJSONObject(i).getInt("estacion"))//Just add the latest record of each station.
-                        continue;
-                    airStations.add(new AirStation(jsonArray.getJSONObject(i)));
-                    counter++;
-                }
-            } catch (IOException | JSONException e) {
-                e.printStackTrace(); //TODO: Handle exception
-            }finally {
-                if(bufferedReader != null) {
-                    try {
-                        bufferedReader.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+        protected Void doInBackground(Void... voids) {
+            airStations = Utils.getAirStations();
             return null;
         }
 

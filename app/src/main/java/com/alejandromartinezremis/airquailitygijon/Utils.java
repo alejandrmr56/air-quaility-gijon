@@ -9,13 +9,27 @@ import android.os.Build;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.alejandromartinezremis.airquailitygijon.logic.AirStation;
 import com.alejandromartinezremis.airquailitygijon.logic.AirStation.Quality;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 public final class Utils {
+    public final static String STATIONS_URL = "https://opendata.gijon.es/descargar.php?id=1&tipo=JSON";
+
     private Utils() {}
 
     public static int getDrawableIdForQualityCircle(Quality quality){
@@ -71,6 +85,21 @@ public final class Utils {
         }
     }
 
+    public static String formatQuality(Context context, AirStation.Quality quality){
+        switch (quality){
+            case VERY_GOOD:
+                return context.getString(R.string.air_quality_very_good);
+            case GOOD:
+                return context.getString(R.string.air_quality_good);
+            case BAD:
+                return context.getString(R.string.air_quality_bad);
+            case VERY_BAD:
+                return context.getString(R.string.air_quality_very_bad);
+            default:
+                return context.getString(R.string.air_quality_unknown);
+        }
+    }
+
     public static String formatDate(String date){ //YYYY_MM_DD_hh_mm
         if(date == null) return "";
 
@@ -103,7 +132,13 @@ public final class Utils {
         }
     }
 
-    public static void createNotificationChannel(Context context) {
+    public static void createAndSendNotification(Context context, String title, String description){
+        createNotificationChannel(context);
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+        notificationManager.notify(0, createNotification(context, title, description));
+    }
+
+    private static void createNotificationChannel(Context context) {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -119,17 +154,48 @@ public final class Utils {
         }
     }
 
-    public static Notification createNotification(Context context, String title, String description){
+    private static Notification createNotification(Context context, String title, String description){
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "CHANNEL_ID")
-                .setSmallIcon(R.drawable.ic_circle_bad)
+                .setSmallIcon(R.drawable.ic_circle_bad) //TODO: Change this icon for app icon
                 .setContentTitle(title)
-                .setContentText(description)
+                .setStyle(new NotificationCompat.BigTextStyle()
+                        .bigText(description))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
         return builder.build();
     }
 
-    public static void createAndSendNotification(Context context, String title, String description){
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
-        notificationManager.notify(0, createNotification(context, title, description));
+    public static List<AirStation> getAirStations(){
+        String str = "";
+        BufferedReader bufferedReader = null;
+        List<AirStation> airStations = new ArrayList<>();
+        try {
+            URLConnection connection = new URL(STATIONS_URL).openConnection();
+            bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String line;
+            while((line = bufferedReader.readLine()) != null)
+                str += line;
+
+            JSONObject jsonObject = new JSONObject(str);
+            JSONArray jsonArray = jsonObject.getJSONObject("calidadairemediatemporales").getJSONArray("calidadairemediatemporal");
+            int counter = 0;
+            for(int i=0; i<jsonArray.length(); i++){
+                if(counter != 0 && airStations.get(counter-1).getEstacion() == jsonArray.getJSONObject(i).getInt("estacion"))//Just add the latest record of each station.
+                    continue;
+                airStations.add(new AirStation(jsonArray.getJSONObject(i)));
+                counter++;
+            }
+        } catch (IOException | JSONException e) {
+            e.printStackTrace(); //TODO: Handle exception
+        }finally {
+            if(bufferedReader != null) {
+                try {
+                    bufferedReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return airStations;
     }
 }
