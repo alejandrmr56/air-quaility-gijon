@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    android:orientation="vertical"
+    tools:context=".activities.SettingsActivity">
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchNotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_notifications_receive"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:id="@+id/layoutNotificationSettings"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="12dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/settings_notifications_frequency"
+            android:textSize="16sp" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/notification_frequency" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/settings_notifications_stations"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/checkBoxAvenidaConstitucion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/station_avenida_constitucion" />
+
+        <CheckBox
+            android:id="@+id/checkBoxAvenidaArgentina"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/station_avenida_argentina" />
+
+        <CheckBox
+            android:id="@+id/checkBoxMontevil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/station_montevil" />
+
+        <CheckBox
+            android:id="@+id/checkBoxHermanosFelgueroso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/station_hermanos_felgueroso" />
+
+        <CheckBox
+            android:id="@+id/checkBoxAvenidaCastilla"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/station_avenida_castilla" />
+
+        <CheckBox
+            android:id="@+id/checkBoxSantaBarbara"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/station_santa_barbara" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/settings_notifications_air_quality"
+            android:textSize="16sp" />
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/air_quality_levels" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,4 +1,4 @@
-package com.alejandromartinezremis.airquailitygijon;
+package com.alejandromartinezremis.airquailitygijon.utils;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -9,8 +9,9 @@ import android.os.Build;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.alejandromartinezremis.airquailitygijon.logic.AirStation;
-import com.alejandromartinezremis.airquailitygijon.logic.AirStation.Quality;
+import com.alejandromartinezremis.airquailitygijon.R;
+import com.alejandromartinezremis.airquailitygijon.pojos.AirStation;
+import com.alejandromartinezremis.airquailitygijon.pojos.AirStation.Quality;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,6 +30,7 @@ import java.util.TimeZone;
 
 public final class Utils {
     public final static String STATIONS_URL = "https://opendata.gijon.es/descargar.php?id=1&tipo=JSON";
+    private static final String CHANNEL_ID = "CHANNEL_ID";
 
     private Utils() {}
 
@@ -145,7 +147,7 @@ public final class Utils {
             CharSequence name = "[Channel Name]";//getString(R.string.channel_name); //TODO: Use R
             String description = "[Channel Description";// getString(R.string.channel_description); //TODO: Use R
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel("CHANNEL_ID", name, importance);
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
             channel.setDescription(description);
             // Register the channel with the system; you can't change the importance
             // or other notification behaviors after this

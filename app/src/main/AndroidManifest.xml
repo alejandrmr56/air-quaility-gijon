@@ -12,15 +12,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AirQuailityGijon">
-        <activity android:name=".StationActivity" android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity
+            android:name=".activities.StationActivity"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <service android:name=".service.NotificationJobService" android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name=".service.NotificationJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 
 </manifest>

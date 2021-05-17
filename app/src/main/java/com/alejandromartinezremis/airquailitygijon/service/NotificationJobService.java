@@ -4,8 +4,8 @@ import android.app.job.JobParameters;
 import android.app.job.JobService;
 import android.util.Log;
 
-import com.alejandromartinezremis.airquailitygijon.Utils;
-import com.alejandromartinezremis.airquailitygijon.logic.AirStation;
+import com.alejandromartinezremis.airquailitygijon.utils.Utils;
+import com.alejandromartinezremis.airquailitygijon.pojos.AirStation;
 
 import java.util.List;
 

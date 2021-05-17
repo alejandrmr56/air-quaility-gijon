@@ -1,4 +1,4 @@
-package com.alejandromartinezremis.airquailitygijon.logic;
+package com.alejandromartinezremis.airquailitygijon.pojos;
 
 public class ListViewItem {
     private String id;

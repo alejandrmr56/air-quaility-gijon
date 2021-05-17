@@ -1,4 +1,4 @@
-package com.alejandromartinezremis.airquailitygijon.logic;
+package com.alejandromartinezremis.airquailitygijon.pojos;
 
 import org.json.JSONException;
 import org.json.JSONObject;

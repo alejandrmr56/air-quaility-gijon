@@ -1,13 +1,9 @@
-package com.alejandromartinezremis.airquailitygijon;
+package com.alejandromartinezremis.airquailitygijon.activities;
 
-import android.app.job.JobInfo;
-import android.app.job.JobScheduler;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,8 +12,9 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.alejandromartinezremis.airquailitygijon.logic.AirStation;
-import com.alejandromartinezremis.airquailitygijon.service.NotificationJobService;
+import com.alejandromartinezremis.airquailitygijon.R;
+import com.alejandromartinezremis.airquailitygijon.utils.Utils;
+import com.alejandromartinezremis.airquailitygijon.pojos.AirStation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,8 +77,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_about:
                 displayAboutAlertDialog(this);
                 break;
-            case R.id.testNotification:
-                ComponentName componentName = new ComponentName(this, NotificationJobService.class);
+            case R.id.menu_settings:
+                startActivity(new Intent(this, SettingsActivity.class));
+
+                //TODO: Move to settings activity
+                /*ComponentName componentName = new ComponentName(this, NotificationJobService.class);
                 JobInfo info = new JobInfo.Builder(123, componentName)
                         .setPersisted(true)
                         .setMinimumLatency(5 *1000) //TODO: Change to 60 mins
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(LOG_TAG, "Job scheduled");
                 } else {
                     Log.d(LOG_TAG, "Job scheduling failed");
-                }
+                }*/
                 break;
         }
         return true;

@@ -1,4 +1,4 @@
-package com.alejandromartinezremis.airquailitygijon;
+package com.alejandromartinezremis.airquailitygijon.activities;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,7 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.alejandromartinezremis.airquailitygijon.logic.ListViewItem;
+import com.alejandromartinezremis.airquailitygijon.R;
+import com.alejandromartinezremis.airquailitygijon.pojos.ListViewItem;
 
 import java.util.List;
 

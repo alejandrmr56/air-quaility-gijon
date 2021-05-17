@@ -1,4 +1,4 @@
-package com.alejandromartinezremis.airquailitygijon;
+package com.alejandromartinezremis.airquailitygijon.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,8 +11,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.alejandromartinezremis.airquailitygijon.logic.AirStation;
-import com.alejandromartinezremis.airquailitygijon.logic.ListViewItem;
+import com.alejandromartinezremis.airquailitygijon.R;
+import com.alejandromartinezremis.airquailitygijon.utils.Utils;
+import com.alejandromartinezremis.airquailitygijon.pojos.AirStation;
+import com.alejandromartinezremis.airquailitygijon.pojos.ListViewItem;
 
 import java.util.ArrayList;
 import java.util.List;
