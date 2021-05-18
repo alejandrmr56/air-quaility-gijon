@@ -158,7 +158,7 @@ public final class Utils {
 
     private static Notification createNotification(Context context, String title, String description){
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "CHANNEL_ID")
-                .setSmallIcon(R.drawable.ic_circle_bad) //TODO: Change this icon for app icon
+                .setSmallIcon(R.drawable.ic_stat_cloud)
                 .setContentTitle(title)
                 .setStyle(new NotificationCompat.BigTextStyle()
                         .bigText(description))
