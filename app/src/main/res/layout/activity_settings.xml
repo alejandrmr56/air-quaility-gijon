@@ -31,7 +31,7 @@
             android:textSize="16sp" />
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/spinnerFrequency"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:entries="@array/notification_frequency" />
@@ -89,7 +89,7 @@
             android:textSize="16sp" />
 
         <Spinner
-            android:id="@+id/spinner2"
+            android:id="@+id/spinnerAirQualityLevel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:entries="@array/air_quality_levels" />
