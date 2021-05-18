@@ -79,22 +79,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.menu_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
-
-                //TODO: Move to settings activity
-                /*ComponentName componentName = new ComponentName(this, NotificationJobService.class);
-                JobInfo info = new JobInfo.Builder(123, componentName)
-                        .setPersisted(true)
-                        .setMinimumLatency(5 *1000) //TODO: Change to 60 mins
-                        .setOverrideDeadline(10 *1000) //TODO: Change to 70 mins
-                        .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
-                        .build();
-                JobScheduler scheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
-                int resultCode = scheduler.schedule(info);
-                if (resultCode == JobScheduler.RESULT_SUCCESS) {
-                    Log.d(LOG_TAG, "Job scheduled");
-                } else {
-                    Log.d(LOG_TAG, "Job scheduling failed");
-                }*/
                 break;
         }
         return true;

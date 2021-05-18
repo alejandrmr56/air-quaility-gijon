@@ -4,12 +4,14 @@ import android.app.job.JobParameters;
 import android.app.job.JobService;
 import android.util.Log;
 
+import com.alejandromartinezremis.airquailitygijon.R;
 import com.alejandromartinezremis.airquailitygijon.utils.Utils;
 import com.alejandromartinezremis.airquailitygijon.pojos.AirStation;
 
 import java.util.List;
 
 public class NotificationJobService extends JobService {
+    public static final int JOB_ID = 0;
     private static final String LOG_TAG = "NotificationJobService";
     private boolean isJobStopped = false;
 
@@ -20,15 +22,34 @@ public class NotificationJobService extends JobService {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                //Get extras
+                int[] unselectedStations = params.getExtras().getIntArray("selectedStations");
+                boolean isOnlyBelowSafeLimits = params.getExtras().getBoolean("isOnlyBelowSafeLimits");
+
+                //Fetch data
                 List<AirStation> airStations = Utils.getAirStations();
+
+                //Remove stations not selected by the user
+                for(int i=0; i<unselectedStations.length; i++)
+                    for(AirStation airStation : airStations)
+                        if(unselectedStations[i] == airStation.getEstacion()){
+                            airStations.remove(airStation);
+                            break;
+                        }
+
+                //Build notification text
                 String notificationDescription = "";
-                for(AirStation airStation : airStations){//TODO: Change this block of functionality based on user settings.
+                for(AirStation airStation : airStations){
+                    if(isOnlyBelowSafeLimits && (airStation.getAirQuality().equals(AirStation.Quality.GOOD) || airStation.getAirQuality().equals(AirStation.Quality.VERY_GOOD))) //Ignore stations that have good quality if user is not interested
+                        continue;
                     notificationDescription += getString(Utils.getStringIdForStationName(airStation.getEstacion()));
                     notificationDescription += ": " +Utils.formatQuality(getApplicationContext(), airStation.getAirQuality()) +"\n";
                     Log.d(LOG_TAG, notificationDescription);
                 }
 
-                Utils.createAndSendNotification(getApplicationContext(), "Test title", notificationDescription); //TODO: Change title and move to R
+                //Send notification
+                if(!notificationDescription.equals(""))//Don't send notification if no station met the user settings
+                    Utils.createAndSendNotification(getApplicationContext(), getString(R.string.notification_title), notificationDescription);
 
                 Log.d(LOG_TAG, "Job finished");
                 jobFinished(params, true);

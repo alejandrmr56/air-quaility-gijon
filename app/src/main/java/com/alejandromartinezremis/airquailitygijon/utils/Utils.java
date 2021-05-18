@@ -51,17 +51,17 @@ public final class Utils {
 
     public static int getDrawableIdForStationPicture(int stationId){
         switch (stationId){
-            case 1:
+            case 1: //TODO: Replace by constant
                 return R.drawable.ic_station_avda_constitucion;
-            case 2:
+            case 2: //TODO: Replace by constant
                 return R.drawable.ic_station_avda_argentina;
-            case 10:
+            case 10: //TODO: Replace by constant
                 return R.drawable.ic_station_montevil;
-            case 3:
+            case 3: //TODO: Replace by constant
                 return R.drawable.ic_station_hermanos_felgueroso;
-            case 4:
+            case 4: //TODO: Replace by constant
                 return R.drawable.ic_station_avda_castilla;
-            case 11:
+            case 11: //TODO: Replace by constant
                 return R.drawable.ic_station_santa_barbara;
             default:
                 return R.drawable.ic_station_unknown;
@@ -70,17 +70,17 @@ public final class Utils {
 
     public static int getStringIdForStationName(int stationId){
         switch (stationId){
-            case 1:
+            case 1: //TODO: Replace by constant
                 return R.string.station_avenida_constitucion;
-            case 2:
+            case 2: //TODO: Replace by constant
                 return R.string.station_avenida_argentina;
-            case 10:
+            case 10: //TODO: Replace by constant
                 return R.string.station_montevil;
-            case 3:
+            case 3: //TODO: Replace by constant
                 return R.string.station_hermanos_felgueroso;
-            case 4:
+            case 4: //TODO: Replace by constant
                 return R.string.station_avenida_castilla;
-            case 11:
+            case 11: //TODO: Replace by constant
                 return R.string.station_santa_barbara;
             default:
                 return R.string.station_unknown;
@@ -199,5 +199,15 @@ public final class Utils {
         }
 
         return airStations;
+    }
+
+    public static int[] integerListToIntArray(List<Integer> integerList){
+        int[] intArray = new int[integerList.size()];
+
+        int i = 0;
+        for (Integer integer : integerList)
+            intArray[i++] = integer;
+
+        return intArray;
     }
 }
