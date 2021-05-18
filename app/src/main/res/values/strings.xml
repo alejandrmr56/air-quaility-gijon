@@ -3,6 +3,12 @@
     <string name="app_name">Air Quaility Gijón</string>
     <string name="ok">OK</string>
 
+    <!-- activity_login -->
+    <string name="user">User</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="login_error">Invalid credentials</string>
+
     <!-- menu_main -->
     <string name="menu_refresh">Refresh data</string>
     <string name="menu_info">Air quality levels info...</string>
