@@ -50,5 +50,44 @@
         android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:onClick="onClick"
         android:text="@string/login" />
+
+    <LinearLayout
+        android:id="@+id/layoutDebugButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/buttonDebugAddUser"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="onClickDebugAdd"
+            android:text="@string/debug_add" />
+
+        <Button
+            android:id="@+id/buttonDebugRemoveUser"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:onClick="onClickDebugRemoveUser"
+            android:text="@string/debug_remove" />
+
+        <Button
+            android:id="@+id/buttonDebugRemoveAll"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="onClickDebugRemoveAllUsers"
+            android:text="@string/debug_remove_all" />
+
+    </LinearLayout>
+
 </LinearLayout>

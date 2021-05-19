@@ -4,12 +4,16 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.database.sqlite.SQLiteConstraintException;
 import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.room.Room;
 
 import com.alejandromartinezremis.airquailitygijon.R;
+import com.alejandromartinezremis.airquailitygijon.db.AppDatabase;
+import com.alejandromartinezremis.airquailitygijon.db.User;
 import com.alejandromartinezremis.airquailitygijon.pojos.AirStation;
 import com.alejandromartinezremis.airquailitygijon.pojos.AirStation.Quality;
 
@@ -209,5 +213,25 @@ public final class Utils {
             intArray[i++] = integer;
 
         return intArray;
+    }
+
+    public static AppDatabase createDb(Context context) {
+        AppDatabase db = Room.databaseBuilder(context, AppDatabase.class, "database-name").allowMainThreadQueries().build();
+        addTestData(db);
+        return db;
+    }
+
+    private static void addTestData(AppDatabase db){
+            try{
+            db.userDao().insertAll(createUser("john", "123"),
+                                    createUser("jane", "321"));
+        }catch (SQLiteConstraintException e){} //expected exception due to PK violation
+    }
+
+    public static User createUser(String username, String password){
+        User user = new User();
+        user.username = username;
+        user.password = password;
+        return user;
     }
 }

@@ -25,7 +25,8 @@
         <activity
             android:name=".activities.StationActivity"
             android:parentActivityName=".activities.MainActivity" />
-        <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.MainActivity"
+            android:parentActivityName=".activities.LoginActivity" />
 
         <service
             android:name=".service.NotificationJobService"

@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, SettingsActivity.class));
                 break;
         }
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 
 
