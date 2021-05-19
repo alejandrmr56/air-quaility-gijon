@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Calidad del Aire Gijón</string>
+    <string name="ok">Vale</string>
+    <string name="user">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="login">Acceder</string>
+    <string name="login_error">Credenciales incorrectas</string>
+    <string name="menu_refresh">Actualizar datos</string>
+    <string name="menu_info">Información de niveles de calidad…</string>
+    <string name="menu_about">Acerca de \'Calidad del Aire Gijón\'…</string>
+    <string name="menu_info_alert_dialog_title">Información de niveles de calidad del aire</string>
+    <string name="menu_info_alert_dialog_message">
+        - Círculo Verde Oscuro: Muy Buena\n- Círculo Verde Claro: Buena\n- Círculo Amarillo: Mala\n- Círculo Rojo: Muy Mala\n
+        \nEl nivel total de la calidad del aire es el mismo que el peor nivel de uno de los compuestos.
+        Esto significa que, por ejemplo, si cada compuesto tiene un nivel \'muy bueno\' pero uno de ellos tiene un nivel \'muy malo\' entonces el nivel de la calidad del aire total es \'muy mala\'.\n
+        \nSi el nivel de un compuesto es \'malo\' significa, de acuerdo con la información proporcionada por el ayuntamiento, está por encima de los límites seguros para la salud.
+    </string>
+    <string name="menu_about_alert_dialog_title">Acerca de \'Calidad del Aire Gijón\'</string>
+    <string name="menu_about_alert_dialog_message">App diseñada e implementada por Alejandro Martínez Remis.\n\nInformación proporcionada por el Ayuntamiento de Gijón (Asturias, España).</string>
+    <string name="loading">Obteniendo los datos de la última hora…</string>
+    <string name="station_unknown">Estación desconocida</string>
+    <string name="station">Estación</string>
+    <string name="title">Nombre</string>
+    <string name="latitude">Latitud</string>
+    <string name="longitude">Longitud</string>
+    <string name="date">Fecha</string>
+    <string name="so2">Dióxido de azufre (SO2)</string>
+    <string name="no">Monóxido de nitrógeno (NO)</string>
+    <string name="no2">Dióxido de nitrógeno (NO2)</string>
+    <string name="co">Monóxido de carbono (CO)</string>
+    <string name="pm10">Partículas en suspensión menores de 10 µm</string>
+    <string name="o3">Ozono (O3)</string>
+    <string name="dd">Viento (dirección)</string>
+    <string name="vv">Viento (velocidad)</string>
+    <string name="tmp">Temperatura</string>
+    <string name="hr">Humedad Relativa</string>
+    <string name="prb">Presión</string>
+    <string name="rs">Radiación Solar</string>
+    <string name="ll">Precipitación</string>
+    <string name="ben">Benceno (C6H6)</string>
+    <string name="tol">Tolueno (C7H8)</string>
+    <string name="mxil">Meta-xileno (C8H10)</string>
+    <string name="pm25">Partículas en suspensión menores de 2,5 µm</string>
+    <string name="air_quality">Calidad del aire</string>
+    <string name="air_quality_very_good">Muy Buena</string>
+    <string name="air_quality_good">Buena</string>
+    <string name="air_quality_bad">Mala</string>
+    <string name="air_quality_very_bad">Muy Mala</string>
+    <string name="air_quality_unknown">Desconocida</string>
+    <string name="location">Ubicación</string>
+    <string name="location_message">Pulse aquí para verla en Google Maps</string>
+    <string name="north">N</string>
+    <string name="north_east">NE</string>
+    <string name="east">E</string>
+    <string name="south_east">SE</string>
+    <string name="south">S</string>
+    <string name="south_west">SO</string>
+    <string name="west">O</string>
+    <string name="north_west">NO</string>
+    <string name="settings">Ajustes</string>
+    <string name="settings_notifications_receive">Recibir notificaciones sobre la calidad del aire</string>
+    <string name="settings_notifications_frequency">Frequencia de notificaciones</string>
+    <string name="settings_notifications_stations">Estaciones incluídas en las notificaicones</string>
+    <string name="settings_notifications_air_quality">Calidades del aire incluídas en las notificaciones</string>
+    <string name="notification_title">Última información:</string>
+
+    <string-array name="air_quality_levels">
+        <item>Cualquie nivel de calidad</item>
+        <item>Sólo niveles \'Malo\' o \'Muy Malo\'</item>
+    </string-array>
+    <string-array name="notification_frequency">
+        <item>Cada hora</item>
+        <item>Cada 2 horas</item>
+        <item>Cada 6 horas</item>
+        <item>Cada 12 horas</item>
+        <item>Cada 24 horas</item>
+        <item>[TEST] As soon as possible</item> <!--TODO: Remove this-->
+    </string-array>
+</resources>

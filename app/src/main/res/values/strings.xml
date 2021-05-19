@@ -8,14 +8,14 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="login_error">Invalid credentials</string>
-    <string name="debug_add">Add user</string>
-    <string name="debug_remove">Remove user</string>
-    <string name="debug_remove_all">Remove ALL users</string>
+    <string name="debug_add" translatable="false">Add user</string>
+    <string name="debug_remove" translatable="false">Remove user</string>
+    <string name="debug_remove_all" translatable="false">Remove ALL users</string>
 
     <!-- menu_main -->
     <string name="menu_refresh">Refresh data</string>
-    <string name="menu_info">Air quality levels info...</string>
-    <string name="menu_about">About \'Air Quality Gijón\' app...</string>
+    <string name="menu_info">Air quality levels info…</string>
+    <string name="menu_about">About \'Air Quality Gijón\' app…</string>
     <string name="menu_info_alert_dialog_title">Air quality levels info</string>
     <string name="menu_info_alert_dialog_message">
         - Dark Green Circle: Very Good\n- Light Green Circle: Good\n- Yellow Circle: Bad\n- Red Circle: Very Bad\n
@@ -27,13 +27,13 @@
     <string name="menu_about_alert_dialog_message">App designed and implemented by Alejandro Martínez Remis.\n\nData provided by the City Council of Gijón (Asturias, Spain).</string>
 
     <!-- activity_main -->
-    <string name="loading">Retrieving latest hour data...</string>
-    <string name="station_avenida_constitucion">Avenida Constitución</string>
-    <string name="station_avenida_argentina">Avenida Argentina</string>
-    <string name="station_montevil">Montevil</string>
-    <string name="station_hermanos_felgueroso">Hermanos Felgueroso</string>
-    <string name="station_avenida_castilla">Avenida Castilla</string>
-    <string name="station_santa_barbara">Santa Bárbara</string>
+    <string name="loading">Retrieving latest hour data…</string>
+    <string name="station_avenida_constitucion" translatable="false">Avenida Constitución</string>
+    <string name="station_avenida_argentina" translatable="false">Avenida Argentina</string>
+    <string name="station_montevil" translatable="false">Montevil</string>
+    <string name="station_hermanos_felgueroso" translatable="false">Hermanos Felgueroso</string>
+    <string name="station_avenida_castilla" translatable="false">Avenida Castilla</string>
+    <string name="station_santa_barbara" translatable="false">Santa Bárbara</string>
     <string name="station_unknown">Unknown Station</string>
 
     <!-- activity_station -->
@@ -59,20 +59,16 @@
     <string name="tol">Toluene (C7H8)</string>
     <string name="mxil">Meta-xylene (C8H10)</string>
     <string name="pm25">Suspended particles smaller than 2,5 µm</string>
-    <string name="voc_separator">Volatile organic compounds (from fuel burning)</string>
-    <string name="text_before_time">at</string>
 
-    <string name="unit_micro">μg/m³</string>
-    <string name="unit_milli">mg/m³</string>
-    <string name="temperature_unit">ºC</string>
-    <string name="humidity_unit">%</string>
-    <string name="pressure_unit">hPa</string>
-    <string name="wind_direction_unit">º</string>
-    <string name="wind_speed_unit">km/h</string>
-    <string name="solar_radiation_unit">W/m²</string>
-    <string name="precipitation_unit">l/m²</string>
-
-    <string name="no_data">No Data</string>
+    <string name="unit_micro" translatable="false">μg/m³</string>
+    <string name="unit_milli" translatable="false">mg/m³</string>
+    <string name="temperature_unit" translatable="false">ºC</string>
+    <string name="humidity_unit" translatable="false">%</string>
+    <string name="pressure_unit" translatable="false">hPa</string>
+    <string name="wind_direction_unit" translatable="false">º</string>
+    <string name="wind_speed_unit" translatable="false">km/h</string>
+    <string name="solar_radiation_unit" translatable="false">W/m²</string>
+    <string name="precipitation_unit" translatable="false">l/m²</string>
 
     <string name="air_quality">Air quality</string>
     <string name="air_quality_very_good">Very Good</string>
