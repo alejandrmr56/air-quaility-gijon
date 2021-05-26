@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,7 +21,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         this.db = Utils.createDb(this);
         if(BuildConfig.DEBUG){
-            ((LinearLayout)findViewById(R.id.layoutDebugButtons)).setVisibility(View.VISIBLE);
+            findViewById(R.id.layoutDebugButtons).setVisibility(View.VISIBLE);
         }
     }
 
@@ -36,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(this, MainActivity.class));
         else{
             ((EditText)findViewById(R.id.editTextPassword)).setText("");
-            ((TextView)findViewById(R.id.textViewLoginError)).setVisibility(View.VISIBLE);
+            findViewById(R.id.textViewLoginError).setVisibility(View.VISIBLE);
         }
     }
 

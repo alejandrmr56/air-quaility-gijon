@@ -14,8 +14,8 @@ import com.alejandromartinezremis.airquailitygijon.pojos.ListViewItem;
 import java.util.List;
 
 public class StationAdapter extends BaseAdapter {
-    List<ListViewItem> listViewItems;
-    private Context context;
+    private final List<ListViewItem> listViewItems;
+    private final Context context;
 
     public StationAdapter(List<ListViewItem> listViewItems, Context context){
         this.listViewItems = listViewItems;

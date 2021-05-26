@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -43,7 +41,7 @@ public class StationActivity extends AppCompatActivity {
         ((ImageView)findViewById(R.id.imageViewCircle)).setImageResource(Utils.getDrawableIdForQualityCircle(airStation.getAirQuality()));
 
         //Loads air quality description. Only displays known component qualities.
-        String str = getString(R.string.air_quality)+": " +Utils.formatQuality(this, airStation.getAirQuality()) +"\n";
+        StringBuilder str = new StringBuilder(getString(R.string.air_quality) + ": " + Utils.formatQuality(this, airStation.getAirQuality()) + "\n");
         AirStation.Quality[] qualities = new AirStation.Quality[5];
         qualities[0] = airStation.getPm10Quality();
         qualities[1] = airStation.getSo2Quality();
@@ -59,9 +57,9 @@ public class StationActivity extends AppCompatActivity {
 
         for(int i = 0; i < qualities.length; i++)
             if(!qualities[i].equals(AirStation.Quality.UNKNOWN))
-                str += "\n" +componentNames[i] +": " +Utils.formatQuality(this, qualities[i]);
+                str.append("\n").append(componentNames[i]).append(": ").append(Utils.formatQuality(this, qualities[i]));
 
-        ((TextView) findViewById(R.id.textViewAirQualityDescription)).setText(str);
+        ((TextView) findViewById(R.id.textViewAirQualityDescription)).setText(str.toString());
 
         //Loads the list with the components of the air station
         final List<ListViewItem> listViewItems = new ArrayList<>();
@@ -75,7 +73,7 @@ public class StationActivity extends AppCompatActivity {
         if(!Double.isNaN(airStation.getDd()))
             listViewItems.add(new ListViewItem(getString(R.string.dd), airStation.getDd().toString( )+" " +getString(R.string.wind_direction_unit) +" (" +formatWindDirection(airStation.getDd()) +")"));
         if(!Double.isNaN(airStation.getVv()))
-            listViewItems.add(new ListViewItem(getString(R.string.vv), (airStation.getVv().doubleValue()*3.6) +" " +getString(R.string.wind_speed_unit)));
+            listViewItems.add(new ListViewItem(getString(R.string.vv), (airStation.getVv() *3.6) +" " +getString(R.string.wind_speed_unit)));
         if(!Double.isNaN(airStation.getRs()))
             listViewItems.add(new ListViewItem(getString(R.string.rs), airStation.getRs().toString() +" " +getString(R.string.solar_radiation_unit)));
         if(!Double.isNaN(airStation.getHr()))
@@ -103,21 +101,18 @@ public class StationActivity extends AppCompatActivity {
         if(!Double.isNaN(airStation.getMxil()))
             listViewItems.add(new ListViewItem(getString(R.string.mxil), airStation.getMxil().toString() +" " +getString(R.string.unit_micro)));
 
-        ListView listView = (ListView) findViewById(R.id.listView);
+        ListView listView = findViewById(R.id.listView);
         listView.setAdapter(new StationAdapter(listViewItems, this));
 
         //
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, final int position, final long id) {
-                ListViewItem property = (ListViewItem) listView.getItemAtPosition(position);
+        listView.setOnItemClickListener((adapterView, view, position, id) -> {
+            ListViewItem property = (ListViewItem) listView.getItemAtPosition(position);
 
-                if(property.getId().equals(getString(R.string.location))){
-                    String str = "geo:" +airStation.getLatitud() +", " +airStation.getLongitud()
-                            +"?q=" +airStation.getLatitud() +", " +airStation.getLongitud() +"(" +airStation.getTitulo() +")";
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(str));
-                    view.getContext().startActivity(intent);
-                }
+            if(property.getId().equals(getString(R.string.location))){
+                String str1 = "geo:" +airStation.getLatitud() +", " +airStation.getLongitud()
+                        +"?q=" +airStation.getLatitud() +", " +airStation.getLongitud() +"(" +airStation.getTitulo() +")";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(str1));
+                view.getContext().startActivity(intent);
             }
         });
     }

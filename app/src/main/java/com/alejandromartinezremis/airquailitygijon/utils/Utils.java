@@ -106,6 +106,7 @@ public final class Utils {
         }
     }
 
+    @SuppressWarnings("deprecation")
     public static String formatDate(String date){ //YYYY_MM_DD_hh_mm
         if(date == null) return "";
 
@@ -171,7 +172,7 @@ public final class Utils {
     }
 
     public static List<AirStation> getAirStations(){
-        String str = "";
+        StringBuilder str = new StringBuilder();
         BufferedReader bufferedReader = null;
         List<AirStation> airStations = new ArrayList<>();
         try {
@@ -179,9 +180,9 @@ public final class Utils {
             bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String line;
             while((line = bufferedReader.readLine()) != null)
-                str += line;
+                str.append(line);
 
-            JSONObject jsonObject = new JSONObject(str);
+            JSONObject jsonObject = new JSONObject(str.toString());
             JSONArray jsonArray = jsonObject.getJSONObject("calidadairemediatemporales").getJSONArray("calidadairemediatemporal");
             int counter = 0;
             for(int i=0; i<jsonArray.length(); i++){
@@ -225,7 +226,7 @@ public final class Utils {
             try{
             db.userDao().insertAll(createUser("john", "123"),
                                     createUser("jane", "321"));
-        }catch (SQLiteConstraintException e){} //expected exception due to PK violation
+        }catch (SQLiteConstraintException ignored){} //expected exception due to PK violation
     }
 
     public static User createUser(String username, String password){

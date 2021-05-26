@@ -44,7 +44,7 @@ public class AirStation implements Serializable {
 
     public Quality getPm10Quality(){
         if(pm10.equals("null") || pm10.equals("")) return Quality.UNKNOWN;
-        Double pm10Double = Double.parseDouble(pm10);
+        double pm10Double = Double.parseDouble(pm10);
         if(pm10Double < 26) return Quality.VERY_GOOD;
         if(pm10Double < 51) return Quality.GOOD;
         if(pm10Double < 76) return Quality.BAD;
@@ -69,7 +69,7 @@ public class AirStation implements Serializable {
 
     public Quality getCoQuality(){
         if(co.equals("null") || co.equals("")) return Quality.UNKNOWN;
-        Double coDouble = Double.parseDouble(co);
+        double coDouble = Double.parseDouble(co);
         if(coDouble < 6) return Quality.VERY_GOOD;
         if(coDouble < 11) return Quality.GOOD;
         if(coDouble < 16) return Quality.BAD;

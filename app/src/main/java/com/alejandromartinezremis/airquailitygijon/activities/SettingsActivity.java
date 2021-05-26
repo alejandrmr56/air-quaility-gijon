@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
@@ -73,15 +72,13 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void addListeners(){
-        switchNotification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                preferences.edit().putBoolean("switchNotificationIsChecked", isChecked).apply();
-                if(isChecked)
-                    startService();
-                else
-                    stopService();
-                setNotificationLayoutVisibilityBasedOnSwitchCheck(isChecked);
-            }
+        switchNotification.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            preferences.edit().putBoolean("switchNotificationIsChecked", isChecked).apply();
+            if(isChecked)
+                startService();
+            else
+                stopService();
+            setNotificationLayoutVisibilityBasedOnSwitchCheck(isChecked);
         });
         spinnerFrequency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -92,47 +89,29 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
         });
-        checkBoxAvenidaConstitucion.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                preferences.edit().putBoolean("checkBoxAvenidaConstitucionIsChecked", isChecked).apply();
-                updateService();
-            }
+        checkBoxAvenidaConstitucion.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            preferences.edit().putBoolean("checkBoxAvenidaConstitucionIsChecked", isChecked).apply();
+            updateService();
         });
-        checkBoxAvenidaArgentina.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                preferences.edit().putBoolean("checkBoxAvenidaArgentinaIsChecked", isChecked).apply();
-                updateService();
-            }
+        checkBoxAvenidaArgentina.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            preferences.edit().putBoolean("checkBoxAvenidaArgentinaIsChecked", isChecked).apply();
+            updateService();
         });
-        checkBoxMontevil.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                preferences.edit().putBoolean("checkBoxMontevilIsChecked", isChecked).apply();
-                updateService();
-            }
+        checkBoxMontevil.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            preferences.edit().putBoolean("checkBoxMontevilIsChecked", isChecked).apply();
+            updateService();
         });
-        checkBoxHermanosFelgueroso.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                preferences.edit().putBoolean("checkBoxHermanosFelguerosoIsChecked", isChecked).apply();
-                updateService();
-            }
+        checkBoxHermanosFelgueroso.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            preferences.edit().putBoolean("checkBoxHermanosFelguerosoIsChecked", isChecked).apply();
+            updateService();
         });
-        checkBoxAvenidaCastilla.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                preferences.edit().putBoolean("checkBoxAvenidaCastillaIsChecked", isChecked).apply();
-                updateService();
-            }
+        checkBoxAvenidaCastilla.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            preferences.edit().putBoolean("checkBoxAvenidaCastillaIsChecked", isChecked).apply();
+            updateService();
         });
-        checkBoxSantaBarbara.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                preferences.edit().putBoolean("checkBoxSantaBarbaraIsChecked", isChecked).apply();
-                updateService();
-            }
+        checkBoxSantaBarbara.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            preferences.edit().putBoolean("checkBoxSantaBarbaraIsChecked", isChecked).apply();
+            updateService();
         });
         spinnerAirQualityLevel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -181,7 +160,7 @@ public class SettingsActivity extends AppCompatActivity {
                 frequency = 1000 ; //Test value
                 break;
             default:
-                throw new IllegalStateException("Unexpected value: " + (String) spinnerFrequency.getSelectedItem());
+                throw new IllegalStateException("Unexpected value: " + spinnerFrequency.getSelectedItem());
         }
 
         //Prepare data for the notification service
