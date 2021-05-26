@@ -52,7 +52,7 @@ public class NotificationJobService extends JobService {
                     Utils.createAndSendNotification(getApplicationContext(), getString(R.string.notification_title), notificationDescription);
 
                 Log.d(LOG_TAG, "Job finished");
-                jobFinished(params, true);
+                jobFinished(params, false);
             }
         }).start();
 

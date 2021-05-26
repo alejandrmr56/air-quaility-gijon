@@ -207,15 +207,14 @@ public class SettingsActivity extends AppCompatActivity {
         ComponentName componentName = new ComponentName(this, NotificationJobService.class);
         JobInfo info = new JobInfo.Builder(NotificationJobService.JOB_ID, componentName)
                 .setPersisted(true)
-                .setMinimumLatency(frequency) //TODO: replaced with setPeriodic
-                .setOverrideDeadline(frequency +1000) //TODO: replaced with setPeriodic
+                .setPeriodic(frequency, 1) //flexMilis set to 1ms so that it will be clamped
                 .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
                 .setExtras(extras)
                 .build();
         JobScheduler scheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
         int resultCode = scheduler.schedule(info);
         if (resultCode == JobScheduler.RESULT_SUCCESS) {
-            Log.d(LOG_TAG, "Job scheduled");
+            Log.d(LOG_TAG, "Job scheduled" +info.getIntervalMillis() +"|" +info.getFlexMillis());
         } else {
             Log.d(LOG_TAG, "Job scheduling failed");
         }
