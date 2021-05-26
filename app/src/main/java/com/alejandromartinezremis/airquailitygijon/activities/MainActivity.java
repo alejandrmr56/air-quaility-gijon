@@ -20,8 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String LOG_TAG = "MainActivity";
-
     private List<AirStation> airStations = new ArrayList<>();
 
     @Override
@@ -34,25 +32,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void onImageClick(View w){
         Intent intent = new Intent(this, StationActivity.class);
-        switch (w.getId()){
-            case R.id.imageViewPictureAvdaConstitucion:
-                intent.putExtra("station", getAirStationById(1)); //TODO: Risk of NPE after getAirStationByID returns null
-                break;
-            case R.id.imageViewPictureAvdaArgentina:
-                intent.putExtra("station", getAirStationById(2)); //TODO: Risk of NPE after getAirStationByID returns null
-                break;
-            case R.id.imageViewPictureMontevil:
-                intent.putExtra("station", getAirStationById(10)); //TODO: Risk of NPE after getAirStationByID returns null
-                break;
-            case R.id.imageViewPictureHermanosFelgueroso:
-                intent.putExtra("station", getAirStationById(3)); //TODO: Risk of NPE after getAirStationByID returns null
-                break;
-            case R.id.imageViewPictureAvdaCastilla:
-                intent.putExtra("station", getAirStationById(4)); //TODO: Risk of NPE after getAirStationByID returns null
-                break;
-            case R.id.imageViewPictureSantaBarbara:
-                intent.putExtra("station", getAirStationById(11)); //TODO: Risk of NPE after getAirStationByID returns null
-                break;
+        int wId = w.getId();
+        if (wId == R.id.imageViewPictureAvdaConstitucion) {
+            intent.putExtra("station", getAirStationById(1));
+        } else if (wId == R.id.imageViewPictureAvdaArgentina) {
+            intent.putExtra("station", getAirStationById(2));
+        } else if (wId == R.id.imageViewPictureMontevil) {
+            intent.putExtra("station", getAirStationById(10));
+        } else if (wId == R.id.imageViewPictureHermanosFelgueroso) {
+            intent.putExtra("station", getAirStationById(3));
+        } else if (wId == R.id.imageViewPictureAvdaCastilla) {
+            intent.putExtra("station", getAirStationById(4));
+        } else if (wId == R.id.imageViewPictureSantaBarbara) {
+            intent.putExtra("station", getAirStationById(11));
         }
         startActivity(intent);
     }
@@ -67,19 +59,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_refresh:
-                refreshData();
-                break;
-            case R.id.menu_info:
-                displayInfoAlertDialog(this);
-                break;
-            case R.id.menu_about:
-                displayAboutAlertDialog(this);
-                break;
-            case R.id.menu_settings:
-                startActivity(new Intent(this, SettingsActivity.class));
-                break;
+        int itemId = item.getItemId();
+        if (itemId == R.id.menu_refresh) {
+            refreshData();
+        } else if (itemId == R.id.menu_info) {
+            displayInfoAlertDialog(this);
+        } else if (itemId == R.id.menu_about) {
+            displayAboutAlertDialog(this);
+        } else if (itemId == R.id.menu_settings) {
+            startActivity(new Intent(this, SettingsActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
@@ -168,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if(viewId == -1) continue;
                 AirStation.Quality airQuality = airStation.getAirQuality();
-                ImageView qualityCircle = (ImageView) findViewById(viewId);
+                ImageView qualityCircle = findViewById(viewId);
                 qualityCircle.setImageResource(Utils.getDrawableIdForQualityCircle(airQuality));
                 imageViewCircleContentDescription += " " +Utils.formatQuality(getApplicationContext(), airQuality);
                 qualityCircle.setContentDescription(imageViewCircleContentDescription);

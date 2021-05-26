@@ -20,10 +20,6 @@
     <string name="menu_about_alert_dialog_message">App diseñada e implementada por Alejandro Martínez Remis.\n\nInformación proporcionada por el Ayuntamiento de Gijón (Asturias, España).</string>
     <string name="loading">Obteniendo los datos de la última hora…</string>
     <string name="station_unknown">Estación desconocida</string>
-    <string name="station">Estación</string>
-    <string name="title">Nombre</string>
-    <string name="latitude">Latitud</string>
-    <string name="longitude">Longitud</string>
     <string name="date">Fecha</string>
     <string name="so2">Dióxido de azufre (SO2)</string>
     <string name="no">Monóxido de nitrógeno (NO)</string>
