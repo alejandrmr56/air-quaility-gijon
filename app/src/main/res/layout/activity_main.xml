@@ -57,7 +57,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:onClick="onImageClick"
-                        app:srcCompat="@drawable/ic_station_avda_constitucion" />
+                        app:srcCompat="@drawable/ic_station_avda_constitucion"
+                        android:importantForAccessibility="no"/>
 
                     <ImageView
                         android:id="@+id/imageViewPictureAvdaArgentina"
@@ -65,7 +66,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:onClick="onImageClick"
-                        app:srcCompat="@drawable/ic_station_avda_argentina" />
+                        app:srcCompat="@drawable/ic_station_avda_argentina"
+                        android:importantForAccessibility="no" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -78,6 +80,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:contentDescription="@string/air_quality_unknown"
                         app:srcCompat="@drawable/ic_circle_unknown" />
 
                     <ImageView
@@ -85,6 +88,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:contentDescription="@string/air_quality_unknown"
                         app:srcCompat="@drawable/ic_circle_unknown" />
                 </LinearLayout>
 
@@ -137,7 +141,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:onClick="onImageClick"
-                        app:srcCompat="@drawable/ic_station_montevil" />
+                        app:srcCompat="@drawable/ic_station_montevil"
+                        android:importantForAccessibility="no" />
 
                     <ImageView
                         android:id="@+id/imageViewPictureHermanosFelgueroso"
@@ -145,7 +150,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:onClick="onImageClick"
-                        app:srcCompat="@drawable/ic_station_hermanos_felgueroso" />
+                        app:srcCompat="@drawable/ic_station_hermanos_felgueroso"
+                        android:importantForAccessibility="no" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -158,6 +164,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:contentDescription="@string/air_quality_unknown"
                         app:srcCompat="@drawable/ic_circle_unknown" />
 
                     <ImageView
@@ -165,6 +172,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:contentDescription="@string/air_quality_unknown"
                         app:srcCompat="@drawable/ic_circle_unknown" />
                 </LinearLayout>
 
@@ -216,7 +224,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:onClick="onImageClick"
-                        app:srcCompat="@drawable/ic_station_avda_castilla" />
+                        app:srcCompat="@drawable/ic_station_avda_castilla"
+                        android:importantForAccessibility="no" />
 
                     <ImageView
                         android:id="@+id/imageViewPictureSantaBarbara"
@@ -224,7 +233,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:onClick="onImageClick"
-                        app:srcCompat="@drawable/ic_station_santa_barbara" />
+                        app:srcCompat="@drawable/ic_station_santa_barbara"
+                        android:importantForAccessibility="no" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -237,6 +247,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:contentDescription="@string/air_quality_unknown"
                         app:srcCompat="@drawable/ic_circle_unknown" />
 
                     <ImageView
@@ -244,6 +255,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:contentDescription="@string/air_quality_unknown"
                         app:srcCompat="@drawable/ic_circle_unknown" />
                 </LinearLayout>
 

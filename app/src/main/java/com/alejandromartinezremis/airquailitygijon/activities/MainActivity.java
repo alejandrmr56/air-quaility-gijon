@@ -137,30 +137,42 @@ public class MainActivity extends AppCompatActivity {
         private void displayAirQualityCircles(){
             for(AirStation airStation : airStations){
                 int viewId;
+                String imageViewCircleContentDescription = "";
                 switch(airStation.getEstacion()){
                     case 1:
                         viewId = R.id.imageViewCircleAvdaConstitucion;
+                        imageViewCircleContentDescription += getString(R.string.station_avenida_constitucion);
                         break;
                     case 2:
                         viewId = R.id.imageViewCircleAvdaArgentina;
+                        imageViewCircleContentDescription += getString(R.string.station_avenida_argentina);
                         break;
                     case 10:
                         viewId = R.id.imageViewCircleMontevil;
+                        imageViewCircleContentDescription += getString(R.string.station_montevil);
                         break;
                     case 3:
                         viewId = R.id.imageViewCircleHermanosFelgueroso;
+                        imageViewCircleContentDescription += getString(R.string.station_hermanos_felgueroso);
                         break;
                     case 4:
                         viewId = R.id.imageViewCircleAvdaCastilla;
+                        imageViewCircleContentDescription += getString(R.string.station_avenida_castilla);
                         break;
                     case 11:
                         viewId = R.id.imageViewCircleSantaBarbara;
+                        imageViewCircleContentDescription += getString(R.string.station_santa_barbara);
                         break;
                     default:
                         viewId = -1;
                 }
                 if(viewId == -1) continue;
-                ((ImageView)findViewById(viewId)).setImageResource(Utils.getDrawableIdForQualityCircle(airStation.getAirQuality()));
+                AirStation.Quality airQuality = airStation.getAirQuality();
+                ImageView qualityCircle = (ImageView) findViewById(viewId);
+                qualityCircle.setImageResource(Utils.getDrawableIdForQualityCircle(airQuality));
+                imageViewCircleContentDescription += " " +Utils.formatQuality(getApplicationContext(), airQuality);
+                qualityCircle.setContentDescription(imageViewCircleContentDescription);
+
             }
         }
 

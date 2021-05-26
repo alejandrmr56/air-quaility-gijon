@@ -16,12 +16,15 @@
             android:id="@+id/imageViewPicture"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:importantForAccessibility="no"
             app:srcCompat="@drawable/ic_station_unknown" />
 
         <ImageView
             android:id="@+id/imageViewCircle"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:contentDescription="@string/air_quality_unknown"
+            android:importantForAccessibility="no"
             app:srcCompat="@drawable/ic_circle_unknown" />
     </RelativeLayout>
 
