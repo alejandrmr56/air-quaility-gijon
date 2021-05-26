@@ -60,6 +60,10 @@
     <string name="settings_notifications_stations">Estaciones incluídas en las notificaicones</string>
     <string name="settings_notifications_air_quality">Calidades del aire incluídas en las notificaciones</string>
     <string name="notification_title">Última información:</string>
+    <string name="channel_name">Notificaciones de calidad del aire</string>
+    <string name="channel_description">Este canal es usado para mandar notificaciones periódicas sobre la última información de los niveles de calidad del aire configurada por el usuario.</string>
+    <string name="alert_dialog_fetch_data_error_title">Error</string>
+    <string name="alert_dialog_fetch_data_error_message">Ha habido un error recuperando la información de las estaciones. Por favor, verifique que tiene una conexión a Internet estable e inténtelo de nuevo o más tarde.</string>
 
     <string-array name="air_quality_levels">
         <item>Cualquie nivel de calidad</item>

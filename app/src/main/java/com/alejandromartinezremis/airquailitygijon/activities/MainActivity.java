@@ -1,6 +1,7 @@
 package com.alejandromartinezremis.airquailitygijon.activities;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -103,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //TODO: Check exception if no Internet connection or list is empty or similar.
     private void getAirStationsData() {
         new Communicator().execute();
     }
@@ -118,6 +118,14 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void result) {
+            if(airStations.isEmpty()){
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this, R.style.Theme_AirQuailityGijon_Dialog);
+                builder.setTitle(R.string.alert_dialog_fetch_data_error_title)
+                        .setMessage(R.string.alert_dialog_fetch_data_error_message)
+                        .setPositiveButton(R.string.ok, (dialog, which) -> finishAffinity())
+                        .create().show();
+                return;
+            }
             displayAirQualityCircles();
             removeLoadingView();
         }

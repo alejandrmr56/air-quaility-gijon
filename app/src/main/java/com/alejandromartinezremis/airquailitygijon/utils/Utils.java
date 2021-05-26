@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.database.sqlite.SQLiteConstraintException;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -33,8 +34,15 @@ import java.util.List;
 import java.util.TimeZone;
 
 public final class Utils {
-    public final static String STATIONS_URL = "https://opendata.gijon.es/descargar.php?id=1&tipo=JSON";
+    public static final String LOG_TAG = "Utils";
+    public static final String STATIONS_URL = "https://opendata.gijon.es/descargar.php?id=1&tipo=JSON";
     private static final String CHANNEL_ID = "CHANNEL_ID";
+    public static final int STATION_ID_AVDA_CONSTITUCION = 1;
+    public static final int STATION_ID_AVDA_ARGENTINA = 2;
+    public static final int STATION_ID_MONTEVIL = 10;
+    public static final int STATION_ID_HERMANOS_FELGUEROSO = 3;
+    public static final int STATION_ID_AVDA_CASTILLA = 4;
+    public static final int STATION_ID_SANTA_BARBARA = 11;
 
     private Utils() {}
 
@@ -55,17 +63,17 @@ public final class Utils {
 
     public static int getDrawableIdForStationPicture(int stationId){
         switch (stationId){
-            case 1: //TODO: Replace by constant
+            case STATION_ID_AVDA_CONSTITUCION:
                 return R.drawable.ic_station_avda_constitucion;
-            case 2: //TODO: Replace by constant
+            case STATION_ID_AVDA_ARGENTINA:
                 return R.drawable.ic_station_avda_argentina;
-            case 10: //TODO: Replace by constant
+            case STATION_ID_MONTEVIL:
                 return R.drawable.ic_station_montevil;
-            case 3: //TODO: Replace by constant
+            case STATION_ID_HERMANOS_FELGUEROSO:
                 return R.drawable.ic_station_hermanos_felgueroso;
-            case 4: //TODO: Replace by constant
+            case STATION_ID_AVDA_CASTILLA:
                 return R.drawable.ic_station_avda_castilla;
-            case 11: //TODO: Replace by constant
+            case STATION_ID_SANTA_BARBARA:
                 return R.drawable.ic_station_santa_barbara;
             default:
                 return R.drawable.ic_station_unknown;
@@ -74,17 +82,17 @@ public final class Utils {
 
     public static int getStringIdForStationName(int stationId){
         switch (stationId){
-            case 1: //TODO: Replace by constant
+            case STATION_ID_AVDA_CONSTITUCION:
                 return R.string.station_avenida_constitucion;
-            case 2: //TODO: Replace by constant
+            case STATION_ID_AVDA_ARGENTINA:
                 return R.string.station_avenida_argentina;
-            case 10: //TODO: Replace by constant
+            case STATION_ID_MONTEVIL:
                 return R.string.station_montevil;
-            case 3: //TODO: Replace by constant
+            case STATION_ID_HERMANOS_FELGUEROSO:
                 return R.string.station_hermanos_felgueroso;
-            case 4: //TODO: Replace by constant
+            case STATION_ID_AVDA_CASTILLA:
                 return R.string.station_avenida_castilla;
-            case 11: //TODO: Replace by constant
+            case STATION_ID_SANTA_BARBARA:
                 return R.string.station_santa_barbara;
             default:
                 return R.string.station_unknown;
@@ -149,8 +157,8 @@ public final class Utils {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = "[Channel Name]";//getString(R.string.channel_name); //TODO: Use R
-            String description = "[Channel Description";// getString(R.string.channel_description); //TODO: Use R
+            CharSequence name = context.getString(R.string.channel_name);
+            String description = context.getString(R.string.channel_description);
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
             channel.setDescription(description);
@@ -192,7 +200,7 @@ public final class Utils {
                 counter++;
             }
         } catch (IOException | JSONException e) {
-            e.printStackTrace(); //TODO: Handle exception
+            Log.e(LOG_TAG, "Error fetching data for air stations.\n" +e);
         }finally {
             if(bufferedReader != null) {
                 try {

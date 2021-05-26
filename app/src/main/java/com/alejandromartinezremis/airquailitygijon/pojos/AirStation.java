@@ -38,7 +38,7 @@ public class AirStation implements Serializable {
             this.mxil = jsonObject.optDouble("mxil");
             this.pm25 = jsonObject.optString("pm25");
         } catch (JSONException e) {
-            e.printStackTrace();//TODO: Handle exception
+            e.printStackTrace();
         }
     }
 

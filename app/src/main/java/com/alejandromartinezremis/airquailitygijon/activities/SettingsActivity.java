@@ -167,17 +167,17 @@ public class SettingsActivity extends AppCompatActivity {
         PersistableBundle extras = new PersistableBundle();
         List<Integer> unselectedStations = new ArrayList<>();
         if(!checkBoxAvenidaConstitucion.isChecked())
-            unselectedStations.add(1); //TODO: Replace by constant
+            unselectedStations.add(Utils.STATION_ID_AVDA_CONSTITUCION);
         if(!checkBoxAvenidaArgentina.isChecked())
-            unselectedStations.add(2); //TODO: Replace by constant
+            unselectedStations.add(Utils.STATION_ID_AVDA_ARGENTINA);
         if(!checkBoxMontevil.isChecked())
-            unselectedStations.add(10); //TODO: Replace by constant
+            unselectedStations.add(Utils.STATION_ID_MONTEVIL);
         if(!checkBoxHermanosFelgueroso.isChecked())
-            unselectedStations.add(3); //TODO: Replace by constant
+            unselectedStations.add(Utils.STATION_ID_HERMANOS_FELGUEROSO);
         if(!checkBoxAvenidaCastilla.isChecked())
-            unselectedStations.add(4); //TODO: Replace by constant
+            unselectedStations.add(Utils.STATION_ID_AVDA_CASTILLA);
         if(!checkBoxSantaBarbara.isChecked())
-            unselectedStations.add(11); //TODO: Replace by constant
+            unselectedStations.add(Utils.STATION_ID_SANTA_BARBARA);
         extras.putIntArray("selectedStations", Utils.integerListToIntArray(unselectedStations));
         extras.putBoolean("isOnlyBelowSafeLimits", spinnerAirQualityLevel.getSelectedItemPosition() == 1);
 
