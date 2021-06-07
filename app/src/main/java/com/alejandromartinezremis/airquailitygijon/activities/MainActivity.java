@@ -1,7 +1,6 @@
 package com.alejandromartinezremis.airquailitygijon.activities;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,8 +13,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alejandromartinezremis.airquailitygijon.R;
-import com.alejandromartinezremis.airquailitygijon.utils.Utils;
 import com.alejandromartinezremis.airquailitygijon.pojos.AirStation;
+import com.alejandromartinezremis.airquailitygijon.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;

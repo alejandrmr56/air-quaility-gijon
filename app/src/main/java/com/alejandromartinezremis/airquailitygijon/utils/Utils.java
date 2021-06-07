@@ -51,7 +51,7 @@ public final class Utils {
 
     /**
      * Returns the resource id of the quality circle associated to a quality
-     * @param quality
+     * @param quality the air quality
      * @return the resource id associated to the given quality
      */
     public static int getDrawableIdForQualityCircle(Quality quality){
@@ -119,7 +119,7 @@ public final class Utils {
 
     /**
      * Returns a String representation of quality
-     * @param context
+     * @param context the context
      * @param quality The air quality
      * @return the String equivalent
      */
@@ -178,7 +178,7 @@ public final class Utils {
 
     /**
      * Creates and displays a notification to the user.
-     * @param context
+     * @param context the context
      * @param title The title of the notification
      * @param description The text to be used in the notification
      * @see #createNotificationChannel(Context)
@@ -192,7 +192,7 @@ public final class Utils {
 
     /**
      * Creates the notification channel
-     * @param context
+     * @param context the context
      */
     private static void createNotificationChannel(Context context) {
         // Create the NotificationChannel, but only on API 26+ because
@@ -212,10 +212,10 @@ public final class Utils {
 
     /**
      * Creates a notification to the user
-     * @param context
+     * @param context the context
      * @param title The title of the notification
      * @param description The description of the notification
-     * @return
+     * @return the notification
      */
     private static Notification createNotification(Context context, String title, String description){
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "CHANNEL_ID")
@@ -283,7 +283,7 @@ public final class Utils {
 
     /**
      * Creates the database of the application
-     * @param context
+     * @param context the context
      * @return the database
      */
     public static AppDatabase createDb(Context context) {

@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
      * Handles the click of the login button
      * @param v the login button
      */
-    public void onClick(View v){
+    public void onClick(@SuppressWarnings("unused") View v){
         String username = ((EditText)findViewById(R.id.editTextUser)).getText().toString();
         String password = ((EditText)findViewById(R.id.editTextPassword)).getText().toString();
         String passwordFromDb = db.userDao().getPassword(username);
@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
      * Handles the click on the add user button
      * @param v the add user button
      */
-    public void onClickDebugAdd(View v){
+    public void onClickDebugAdd(@SuppressWarnings("unused") View v){
         String username = ((EditText)findViewById(R.id.editTextUser)).getText().toString();
         String password = ((EditText)findViewById(R.id.editTextPassword)).getText().toString();
         try{
@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
      * Handles the click on the remove user button
      * @param v the remove user button
      */
-    public void onClickDebugRemoveUser(View v){
+    public void onClickDebugRemoveUser(@SuppressWarnings("unused") View v){
         String username = ((EditText)findViewById(R.id.editTextUser)).getText().toString();
         try{
             db.userDao().deleteUser(username);
@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
      * Handles the click on the remove all users button
      * @param v the remove all users button
      */
-    public void onClickDebugRemoveAllUsers(View v){
+    public void onClickDebugRemoveAllUsers(@SuppressWarnings("unused") View v){
         try{
             db.userDao().deleteAllUsers();
         }catch(Exception e){
