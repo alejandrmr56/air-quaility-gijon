@@ -4,6 +4,9 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
+/**
+ * DAO to retrieve Users from the database
+ */
 @Dao
 public interface UserDao {
     @Query("SELECT password FROM user WHERE username = :username")

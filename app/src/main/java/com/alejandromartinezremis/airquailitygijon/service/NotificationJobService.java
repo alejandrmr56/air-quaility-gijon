@@ -10,6 +10,10 @@ import com.alejandromartinezremis.airquailitygijon.pojos.AirStation;
 
 import java.util.List;
 
+
+/**
+ * Service in charge of fetching the data and notifying the user
+ */
 public class NotificationJobService extends JobService {
     public static final int JOB_ID = 0;
     private static final String LOG_TAG = "NotificationJobService";

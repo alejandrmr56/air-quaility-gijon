@@ -1,5 +1,8 @@
 package com.alejandromartinezremis.airquailitygijon.pojos;
 
+/**
+ * Object that represents the data inside each item of a ListView
+ */
 public class ListViewItem {
     private final String id;
     private final String value;

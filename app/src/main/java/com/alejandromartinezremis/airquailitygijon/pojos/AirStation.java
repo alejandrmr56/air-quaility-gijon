@@ -5,6 +5,9 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 
+/**
+ * Object representation of a record of an air quality station
+ */
 public class AirStation implements Serializable {
     public enum Quality{UNKNOWN, VERY_GOOD, GOOD, BAD, VERY_BAD}
     private Integer estacion;

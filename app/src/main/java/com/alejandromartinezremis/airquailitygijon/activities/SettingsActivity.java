@@ -23,6 +23,9 @@ import com.alejandromartinezremis.airquailitygijon.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Activity that displays the settings of the application
+ */
 public class SettingsActivity extends AppCompatActivity {
     private final static String LOG_TAG = "SettingsActivity";
 
@@ -47,6 +50,9 @@ public class SettingsActivity extends AppCompatActivity {
         addListeners();
     }
 
+    /**
+     * Loads the settings stored in the preferences
+     */
     private void loadSettings() {
         preferences = getPreferences(MODE_PRIVATE);
         switchNotification = findViewById(R.id.switchNotification);
@@ -71,6 +77,9 @@ public class SettingsActivity extends AppCompatActivity {
         spinnerAirQualityLevel.setSelection(preferences.getInt("spinnerAirQualityLevelPosition", 0));
     }
 
+    /**
+     * Adds the listeners to the GUI elements
+     */
     private void addListeners(){
         switchNotification.setOnCheckedChangeListener((buttonView, isChecked) -> {
             preferences.edit().putBoolean("switchNotificationIsChecked", isChecked).apply();
@@ -124,6 +133,10 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Makes the settings related to the notifications either visible or invisible
+     * @param isChecked The flag that makes the section visible or invisible
+     */
     private void setNotificationLayoutVisibilityBasedOnSwitchCheck(boolean isChecked){
         LinearLayout layout = findViewById(R.id.layoutNotificationSettings);
         if(isChecked)
@@ -132,11 +145,19 @@ public class SettingsActivity extends AppCompatActivity {
             layout.setVisibility(View.GONE);
     }
 
+    /**
+     * Updates the notification service whenever there's an update
+     * @see #stopService()
+     * @see #startService()
+     */
     private void updateService(){
         stopService();
         startService();
     }
 
+    /**
+     * Starts the notification service
+     */
     private void startService(){
         //Get frequency
         long frequency;
@@ -199,6 +220,9 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Stops the notification service
+     */
     private void stopService(){
         ((JobScheduler)getSystemService(JOB_SCHEDULER_SERVICE)).cancel(NotificationJobService.JOB_ID);
         Log.d(LOG_TAG, "Job cancelled");

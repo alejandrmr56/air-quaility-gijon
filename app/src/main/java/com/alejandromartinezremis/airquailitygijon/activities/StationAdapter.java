@@ -13,6 +13,9 @@ import com.alejandromartinezremis.airquailitygijon.pojos.ListViewItem;
 
 import java.util.List;
 
+/**
+ * Adapter that loads the ListView
+ */
 public class StationAdapter extends BaseAdapter {
     private final List<ListViewItem> listViewItems;
     private final Context context;

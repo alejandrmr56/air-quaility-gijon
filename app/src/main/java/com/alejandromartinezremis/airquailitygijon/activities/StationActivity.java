@@ -17,6 +17,9 @@ import com.alejandromartinezremis.airquailitygijon.pojos.ListViewItem;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Activity that displays the details of a particular air station record
+ */
 public class StationActivity extends AppCompatActivity {
 
     AirStation airStation;
@@ -31,6 +34,9 @@ public class StationActivity extends AppCompatActivity {
         loadData();
     }
 
+    /**
+     * Loads the data into the GUI elements
+     */
     private void loadData(){
         airStation = (AirStation)this.getIntent().getSerializableExtra("station");
         //Load station name
@@ -103,8 +109,7 @@ public class StationActivity extends AppCompatActivity {
 
         ListView listView = findViewById(R.id.listView);
         listView.setAdapter(new StationAdapter(listViewItems, this));
-
-        //
+        //Creates the link to Google Maps in the Location item
         listView.setOnItemClickListener((adapterView, view, position, id) -> {
             ListViewItem property = (ListViewItem) listView.getItemAtPosition(position);
 
@@ -117,9 +122,13 @@ public class StationActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Converts a direction expressed in degrees into a cardinal point
+     * @param degrees the degrees (from 0 to 360)
+     * @return the cardinal point equivalent
+     */
     private String formatWindDirection(Double degrees){
         if(degrees >= 360 || degrees < 0) return "";
-
         if(degrees >= 338 || degrees <= 22) return getString(R.string.north);
         if(degrees >= 23 && degrees <= 67) return getString(R.string.north_east);
         if(degrees >= 68 && degrees <= 112) return getString(R.string.east);

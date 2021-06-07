@@ -33,6 +33,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
+/**
+ * Utility class used across the application
+ */
 public final class Utils {
     public static final String LOG_TAG = "Utils";
     public static final String STATIONS_URL = "https://opendata.gijon.es/descargar.php?id=1&tipo=JSON";
@@ -46,6 +49,11 @@ public final class Utils {
 
     private Utils() {}
 
+    /**
+     * Returns the resource id of the quality circle associated to a quality
+     * @param quality
+     * @return the resource id associated to the given quality
+     */
     public static int getDrawableIdForQualityCircle(Quality quality){
         switch(quality){
             case VERY_GOOD:
@@ -61,6 +69,11 @@ public final class Utils {
         }
     }
 
+    /**
+     * Returns the resource ID of the picture associated to an air quality station
+     * @param stationId the ID of the air quality station
+     * @return the resource ID associated to the given air quality station
+     */
     public static int getDrawableIdForStationPicture(int stationId){
         switch (stationId){
             case STATION_ID_AVDA_CONSTITUCION:
@@ -80,6 +93,11 @@ public final class Utils {
         }
     }
 
+    /**
+     * Returns the String ID associated to a given air quality station
+     * @param stationId the ID of the air quality station
+     * @return the String ID associated to the given air quality station
+     */
     public static int getStringIdForStationName(int stationId){
         switch (stationId){
             case STATION_ID_AVDA_CONSTITUCION:
@@ -99,6 +117,12 @@ public final class Utils {
         }
     }
 
+    /**
+     * Returns a String representation of quality
+     * @param context
+     * @param quality The air quality
+     * @return the String equivalent
+     */
     public static String formatQuality(Context context, AirStation.Quality quality){
         switch (quality){
             case VERY_GOOD:
@@ -114,8 +138,13 @@ public final class Utils {
         }
     }
 
+    /**
+     * Converts a UTC date and time into a Central Europe (Madrid) date and time
+     * @param date the UTC date in YYYY_MM_DD_hh24_mm format (the separator '_' can be any character, but only one)
+     * @return the equivalent date and time for Central Europe (Madrid) in 'DD MM YYYY hh24:mm'
+     */
     @SuppressWarnings("deprecation")
-    public static String formatDate(String date){ //YYYY_MM_DD_hh_mm
+    public static String formatDate(String date){
         if(date == null) return "";
 
         TimeZone userTimeZone = Calendar.getInstance().getTimeZone();
@@ -147,12 +176,24 @@ public final class Utils {
         }
     }
 
+    /**
+     * Creates and displays a notification to the user.
+     * @param context
+     * @param title The title of the notification
+     * @param description The text to be used in the notification
+     * @see #createNotificationChannel(Context)
+     * @see #createNotification(Context, String, String)
+     */
     public static void createAndSendNotification(Context context, String title, String description){
         createNotificationChannel(context);
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
         notificationManager.notify(0, createNotification(context, title, description));
     }
 
+    /**
+     * Creates the notification channel
+     * @param context
+     */
     private static void createNotificationChannel(Context context) {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
@@ -169,6 +210,13 @@ public final class Utils {
         }
     }
 
+    /**
+     * Creates a notification to the user
+     * @param context
+     * @param title The title of the notification
+     * @param description The description of the notification
+     * @return
+     */
     private static Notification createNotification(Context context, String title, String description){
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "CHANNEL_ID")
                 .setSmallIcon(R.drawable.ic_stat_cloud)
@@ -179,6 +227,10 @@ public final class Utils {
         return builder.build();
     }
 
+    /**
+     * Retrieves the air quality data from the provider
+     * @return A list containing the last record of each air station
+     */
     public static List<AirStation> getAirStations(){
         StringBuilder str = new StringBuilder();
         BufferedReader bufferedReader = null;
@@ -214,6 +266,11 @@ public final class Utils {
         return airStations;
     }
 
+    /**
+     * Converts a list of Integers into an array of ints
+     * @param integerList the list of Integers
+     * @return the array of ints
+     */
     public static int[] integerListToIntArray(List<Integer> integerList){
         int[] intArray = new int[integerList.size()];
 
@@ -224,12 +281,21 @@ public final class Utils {
         return intArray;
     }
 
+    /**
+     * Creates the database of the application
+     * @param context
+     * @return the database
+     */
     public static AppDatabase createDb(Context context) {
         AppDatabase db = Room.databaseBuilder(context, AppDatabase.class, "database-name").allowMainThreadQueries().build();
         addTestData(db);
         return db;
     }
 
+    /**
+     * Adds initial test data to the database
+     * @param db the database in which the initial test data will be loaded into
+     */
     private static void addTestData(AppDatabase db){
             try{
             db.userDao().insertAll(createUser("john", "123"),
@@ -237,6 +303,12 @@ public final class Utils {
         }catch (SQLiteConstraintException ignored){} //expected exception due to PK violation
     }
 
+    /**
+     * Creates a user
+     * @param username The username
+     * @param password The password
+     * @return The user instance
+     */
     public static User createUser(String username, String password){
         User user = new User();
         user.username = username;

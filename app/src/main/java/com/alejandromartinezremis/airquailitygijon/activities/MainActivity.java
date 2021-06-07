@@ -20,6 +20,9 @@ import com.alejandromartinezremis.airquailitygijon.pojos.AirStation;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Main activity that displays the general overview of the stations
+ */
 public class MainActivity extends AppCompatActivity {
     private List<AirStation> airStations = new ArrayList<>();
 
@@ -31,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
         getAirStationsData();
     }
 
+    /**
+     * Method that handles the click into each air station
+     * @param w the GUI element that represents the air station
+     */
     public void onImageClick(View w){
         Intent intent = new Intent(this, StationActivity.class);
         int wId = w.getId();
@@ -74,11 +81,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Menu option that refreshes the data
+     */
     private void refreshData(){
         setContentView(R.layout.activity_main);
         getAirStationsData();
     }
 
+    /**
+     * Menu option that displays the info alert dialog
+     * @param context
+     */
     private void displayInfoAlertDialog(Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.Theme_AirQuailityGijon_Dialog);
         builder.setTitle(R.string.menu_info_alert_dialog_title)
@@ -87,6 +101,10 @@ public class MainActivity extends AppCompatActivity {
                 .create().show();
     }
 
+    /**
+     * Menu option that displays the about alert dialog
+     * @param context
+     */
     private void displayAboutAlertDialog(Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.Theme_AirQuailityGijon_Dialog);
         builder.setTitle(R.string.menu_about_alert_dialog_title)
@@ -96,6 +114,11 @@ public class MainActivity extends AppCompatActivity {
     }
     /* End of menu-related code */
 
+    /**
+     * Returns an air station given its ID
+     * @param airStationId the ID of the air station
+     * @return the air station
+     */
     private AirStation getAirStationById(int airStationId){
         for(AirStation airStation : airStations)
             if(airStationId == airStation.getEstacion())
@@ -104,10 +127,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Retrieves the air quality records from the provider
+     */
     private void getAirStationsData() {
         new Communicator().execute();
     }
 
+    /**
+     * Class that handles the data retrieval from the Internet
+     */
     private class Communicator extends AsyncTask<Void, Void, Void>{
 
         @Override
@@ -130,6 +159,9 @@ public class MainActivity extends AppCompatActivity {
             removeLoadingView();
         }
 
+        /**
+         * Loads the GUI air quality circles for each air station
+         */
         private void displayAirQualityCircles(){
             for(AirStation airStation : airStations){
                 int viewId;
@@ -172,6 +204,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        /**
+         * Hides the loading view
+         */
         private void removeLoadingView(){
             findViewById(R.id.loadingLayout).setVisibility(View.GONE);
             findViewById(R.id.mainLayout).setVisibility(View.VISIBLE);
