@@ -71,6 +71,5 @@
         <item>Cada 6 horas</item>
         <item>Cada 12 horas</item>
         <item>Cada 24 horas</item>
-        <item>[TEST] As soon as possible</item> <!--TODO: Remove this-->
     </string-array>
 </resources>

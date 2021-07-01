@@ -177,9 +177,6 @@ public class SettingsActivity extends AppCompatActivity {
             case 4:
                 frequency = 1000 * 60 * 60 * 24; //24 hours
                 break;
-            case 5://TODO:Remove this
-                frequency = 1000 ; //Test value
-                break;
             default:
                 throw new IllegalStateException("Unexpected value: " + spinnerFrequency.getSelectedItem());
         }

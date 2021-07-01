@@ -95,7 +95,6 @@
         <item>Every 6 hours</item>
         <item>Every 12 hours</item>
         <item>Every 24 hours</item>
-        <item>[TEST] As soon as possible</item> <!--TODO: Remove this-->
     </string-array>
 
     <!-- activity_settings -->
