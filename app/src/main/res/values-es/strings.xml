@@ -62,7 +62,7 @@
     <string name="alert_dialog_fetch_data_error_message">Ha habido un error recuperando la información de las estaciones. Por favor, verifique que tiene una conexión a Internet estable e inténtelo de nuevo o más tarde.</string>
 
     <string-array name="air_quality_levels">
-        <item>Cualquie nivel de calidad</item>
+        <item>Cualquier nivel de calidad</item>
         <item>Sólo niveles \'Malo\' o \'Muy Malo\'</item>
     </string-array>
     <string-array name="notification_frequency">
