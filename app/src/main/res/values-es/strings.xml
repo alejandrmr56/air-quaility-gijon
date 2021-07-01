@@ -2,10 +2,6 @@
 <resources>
     <string name="app_name">Calidad del Aire Gijón</string>
     <string name="ok">Vale</string>
-    <string name="user">Usuario</string>
-    <string name="password">Contraseña</string>
-    <string name="login">Acceder</string>
-    <string name="login_error">Credenciales incorrectas</string>
     <string name="menu_refresh">Actualizar datos</string>
     <string name="menu_info">Información de niveles de calidad…</string>
     <string name="menu_about">Acerca de \'Calidad del Aire Gijón\'…</string>
